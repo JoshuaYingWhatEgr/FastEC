@@ -1,9 +1,11 @@
 package com.examples.joshuayingwhat.latte.app;
 
+import com.joanzapata.iconify.IconFontDescriptor;
+import com.joanzapata.iconify.Iconify;
+import java.util.ArrayList;
 import java.util.WeakHashMap;
 
 /**
- *
  * @author joshuayingwhat
  * @date 2018/12/18
  */
@@ -11,6 +13,10 @@ import java.util.WeakHashMap;
 public class Configurator {
 
   private static final WeakHashMap<String, Object> LATTE_CONFIGS = new WeakHashMap<>();
+  /**
+   * 存储iconify的空间
+   */
+  private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
 
   private Configurator() {
     //初始化配置  首先设置初始化配置未完成
@@ -33,11 +39,29 @@ public class Configurator {
   }
 
   public final void configure() {
+    initIcons();
     LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
   }
 
   public final Configurator withApiHost(String host) {
     LATTE_CONFIGS.put(ConfigType.API_HOST.name(), host);
+    return this;
+  }
+
+  /**
+   * 初始化iconify
+   */
+  private void initIcons() {
+    if (ICONS.size() > 0) {
+      final Iconify.IconifyInitializer initializer = Iconify.with(ICONS.get(0));
+      for (int i = 1; i < ICONS.size(); i++) {
+        initializer.with(ICONS.get(i));
+      }
+    }
+  }
+
+  public final Configurator withIcon(IconFontDescriptor descriptorIcons) {
+    ICONS.add(descriptorIcons);
     return this;
   }
 
