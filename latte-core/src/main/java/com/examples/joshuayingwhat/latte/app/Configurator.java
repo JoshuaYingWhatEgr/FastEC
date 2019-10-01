@@ -26,7 +26,7 @@ public class Configurator {
   /**
    * 静态内部类的初始化
    */
-  public static Configurator getInstance() {
+  static Configurator getInstance() {
     return Holder.INSTANCE;
   }
 
