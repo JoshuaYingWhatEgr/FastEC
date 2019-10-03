@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import me.yokeyword.fragmentation.SupportActivity;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 
 /**
@@ -16,7 +17,11 @@ import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
  */
 public abstract class BaseDelegate extends SwipeBackFragment {
 
+    private Unbinder mUnbinder;
+
     public abstract Object setLayout();
+
+    public abstract void onBinderView(@Nullable Bundle savedInstanceState, View rootView);
 
     @Nullable
     @Override
@@ -28,9 +33,19 @@ public abstract class BaseDelegate extends SwipeBackFragment {
             rootView = (View) setLayout();
         }
 
-        if(rootView != null) {
-
+        if (rootView != null) {
+            mUnbinder = ButterKnife.bind(this, rootView);
+            onBinderView(savedInstanceState, rootView);
         }
         return rootView;
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+        }
     }
 }

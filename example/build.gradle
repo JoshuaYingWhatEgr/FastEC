@@ -26,5 +26,4 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':latte-ec')
     annotationProcessor project(':latte-compiler')
-    implementation 'androidx.appcompat:appcompat:1.1.0'
 }
