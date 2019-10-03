@@ -1,8 +1,9 @@
 package com.examples.joshuayingwhat.fastec;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.examples.joshuayingwhat.latte.app.Latte;
 import com.examples.joshuayingwhat.latte.ec.icon.FontEcModule;
