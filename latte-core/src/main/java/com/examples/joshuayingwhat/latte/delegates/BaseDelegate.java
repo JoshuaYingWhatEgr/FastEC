@@ -13,6 +13,8 @@ import butterknife.Unbinder;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 
 /**
+ * 这个就是一个fragment
+ *
  * @author joshuayingwhat
  */
 public abstract class BaseDelegate extends SwipeBackFragment {

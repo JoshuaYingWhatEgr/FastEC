@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.ContentFrameLayout;
 
 import com.examples.joshuayingwhat.latte.R;
-import com.examples.joshuayingwhat.latte.delegates.BaseDelegate;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 
 import me.yokeyword.fragmentation.SupportActivity;
@@ -24,7 +23,7 @@ public abstract class ProxyActivity extends SupportActivity {
      *
      * @return
      */
-    public abstract BaseDelegate setRootDelegate();
+    public abstract LatteDelegate setRootDelegate();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +36,7 @@ public abstract class ProxyActivity extends SupportActivity {
         container.setId(R.id.delegate_container);
         setContentView(container);
         if (savedInstanceState == null) {
+            //所有的delegate的目的就是为了能够load到root fragment中
             loadRootFragment(R.id.delegate_container, setRootDelegate());
         }
     }
