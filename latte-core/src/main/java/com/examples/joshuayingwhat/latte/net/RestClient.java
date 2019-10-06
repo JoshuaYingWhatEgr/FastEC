@@ -10,8 +10,11 @@ import com.examples.joshuayingwhat.latte.net.callback.RequestCallBacks;
 import com.examples.joshuayingwhat.latte.ui.LatteLoader;
 import com.examples.joshuayingwhat.latte.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,12 +28,14 @@ public class RestClient {
     private final IFailure FAILURE;
     private final ISuccess SUCCESS;
     private final RequestBody REQUEST_BODY;
+    private final File FILE;
     private final LoaderStyle LOADER_STYLE;
     private final Context CONTEXT;
 
     public RestClient(String url, Map<String, Object> params, IRequest request,
                       IError error, IFailure failure,
-                      ISuccess success, RequestBody requestBody, Context context, LoaderStyle loaderStyle) {
+                      ISuccess success, RequestBody requestBody, Context context, LoaderStyle loaderStyle
+            , File mFile) {
         this.URL = url;
         PARAMS.putAll(params);
         this.REQUEST = request;
@@ -40,6 +45,7 @@ public class RestClient {
         this.REQUEST_BODY = requestBody;
         this.LOADER_STYLE = loaderStyle;
         this.CONTEXT = context;
+        this.FILE = mFile;
     }
 
     public static RestClientBuilder builder() {
@@ -66,11 +72,24 @@ public class RestClient {
             case POST:
                 call = restService.post(URL, PARAMS);
                 break;
+            case POST_RAW:
+                call = restService.postRaw(URL, REQUEST_BODY);
+                break;
             case PUT:
                 call = restService.put(URL, PARAMS);
                 break;
+            case PUT_RAW:
+                call = restService.putRaw(URL, REQUEST_BODY);
+                break;
             case DELETE:
                 call = restService.delete(URL, PARAMS);
+                break;
+            case UPLOAD:
+                final RequestBody requestBody = RequestBody.create(
+                        MediaType.parse(MultipartBody.FORM.toString()), FILE);
+
+                final MultipartBody.Part body = MultipartBody.Part.createFormData("file", FILE.getName(),requestBody);
+                call = restService.upload(URL, body);
                 break;
             default:
                 break;
@@ -95,11 +114,25 @@ public class RestClient {
     }
 
     public final void post() {
-        request(HttpMethod.POST);
+        if (REQUEST_BODY == null) {
+            request(HttpMethod.POST);
+        } else {
+            if (!PARAMS.isEmpty()) {
+                throw new RuntimeException("params must be mull!");
+            }
+            request(HttpMethod.POST_RAW);
+        }
     }
 
     public final void put() {
-        request(HttpMethod.PUT);
+        if (REQUEST_BODY == null) {
+            request(HttpMethod.PUT);
+        } else {
+            if (!PARAMS.isEmpty()) {
+                throw new RuntimeException("params must be mull!");
+            }
+            request(HttpMethod.PUT_RAW);
+        }
     }
 
     public final void delete() {
