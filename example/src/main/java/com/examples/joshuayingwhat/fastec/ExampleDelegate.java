@@ -12,6 +12,7 @@ import com.examples.joshuayingwhat.latte.net.RestClient;
 import com.examples.joshuayingwhat.latte.net.callback.IError;
 import com.examples.joshuayingwhat.latte.net.callback.IFailure;
 import com.examples.joshuayingwhat.latte.net.callback.ISuccess;
+import com.examples.joshuayingwhat.latte.net.interceptors.DebugInterceptors;
 
 /**
  * @author joshuayingwhat
@@ -27,11 +28,12 @@ public class ExampleDelegate extends LatteDelegate {
         test();
     }
 
-    public void test() {
+    private void test() {
 
-        Latte.init(getContext()).withApiHost("220.181.38.148");
+        Latte.init(getContext()).withApiHost("http://127.0.0.1/")
+                .withInterceptor(new DebugInterceptors("index", R.raw.test)).configure();
 
-        RestClient.builder().url("http://news.baidu.com/")
+        RestClient.builder().url("http://127.0.0.1/index")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override

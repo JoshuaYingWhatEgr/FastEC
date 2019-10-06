@@ -6,6 +6,8 @@ import com.joanzapata.iconify.Iconify;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 
+import okhttp3.Interceptor;
+
 /**
  * 配置文件的存储和获取
  *
@@ -21,9 +23,11 @@ public class Configurator {
      */
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
 
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
+
     private Configurator() {
         //初始化配置  首先设置初始化配置未完成
-        LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), false);
+        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), false);
     }
 
     /**
@@ -43,11 +47,29 @@ public class Configurator {
 
     public final void configure() {
         initIcons();
-        LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
+        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), true);
     }
 
     public final Configurator withApiHost(String host) {
-        LATTE_CONFIGS.put(ConfigType.API_HOST.name(), host);
+        LATTE_CONFIGS.put(ConfigKeys.API_HOST.name(), host);
+        return this;
+    }
+
+    /**
+     * 设置网络拦截器
+     *
+     * @param interceptor
+     * @return
+     */
+    public final Configurator withInterceptor(Interceptor interceptor) {
+        INTERCEPTORS.add(interceptor);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(), INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
+        INTERCEPTORS.addAll(interceptors);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(), INTERCEPTORS);
         return this;
     }
 
@@ -68,18 +90,19 @@ public class Configurator {
         return this;
     }
 
+
     /**
      * 检查配置项是否完成
      */
     private void checkConfiguration() {
-        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigType.CONFIG_READY.name());
+        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
         if (!isReady) {
             throw new RuntimeException("Configuration is not ready,call Configurat");
         }
     }
 
     @SuppressWarnings("unchecked")
-    final <T> T getConfiguration(Enum<ConfigType> key) {
+    final <T> T getConfiguration(Enum<ConfigKeys> key) {
         checkConfiguration();
         return (T) LATTE_CONFIGS.get(key.name());
     }
