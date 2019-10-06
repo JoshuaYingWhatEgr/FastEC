@@ -1,5 +1,8 @@
 package com.examples.joshuayingwhat.latte.net.callback;
 
+import com.examples.joshuayingwhat.latte.ui.LatteLoader;
+import com.examples.joshuayingwhat.latte.ui.LoaderStyle;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -12,12 +15,14 @@ public class RequestCallBacks implements Callback<String> {
     private final IError ERROR;
     private final IFailure FAILURE;
     private final ISuccess SUCCESS;
+    private final LoaderStyle LOADER_STYLE;
 
-    public RequestCallBacks(IRequest request, IError error, IFailure ifailure, ISuccess iSuccess) {
+    public RequestCallBacks(IRequest request, IError error, IFailure ifailure, ISuccess iSuccess, LoaderStyle loaderStyle) {
         this.REQUEST = request;
         this.ERROR = error;
         this.FAILURE = ifailure;
         this.SUCCESS = iSuccess;
+        this.LOADER_STYLE = loaderStyle;
     }
 
     @Override
@@ -33,6 +38,8 @@ public class RequestCallBacks implements Callback<String> {
                 ERROR.onError(response.code(), response.message());
             }
         }
+
+        stopLoading();
     }
 
     @Override
@@ -43,6 +50,13 @@ public class RequestCallBacks implements Callback<String> {
 
         if (REQUEST != null) {
             REQUEST.onRequestEnd();
+        }
+        stopLoading();
+    }
+
+    public void stopLoading() {
+        if (LOADER_STYLE != null) {
+            LatteLoader.stopLoading();
         }
     }
 }

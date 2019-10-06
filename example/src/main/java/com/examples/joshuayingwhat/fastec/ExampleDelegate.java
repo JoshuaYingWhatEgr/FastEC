@@ -32,6 +32,7 @@ public class ExampleDelegate extends LatteDelegate {
         Latte.init(getContext()).withApiHost("220.181.38.148");
 
         RestClient.builder().url("http://news.baidu.com/")
+                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {

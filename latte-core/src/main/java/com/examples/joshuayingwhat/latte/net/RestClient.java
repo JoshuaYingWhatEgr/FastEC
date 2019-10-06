@@ -1,10 +1,14 @@
 package com.examples.joshuayingwhat.latte.net;
 
+import android.content.Context;
+
 import com.examples.joshuayingwhat.latte.net.callback.IError;
 import com.examples.joshuayingwhat.latte.net.callback.IFailure;
 import com.examples.joshuayingwhat.latte.net.callback.IRequest;
 import com.examples.joshuayingwhat.latte.net.callback.ISuccess;
 import com.examples.joshuayingwhat.latte.net.callback.RequestCallBacks;
+import com.examples.joshuayingwhat.latte.ui.LatteLoader;
+import com.examples.joshuayingwhat.latte.ui.LoaderStyle;
 
 import java.util.Map;
 
@@ -21,10 +25,12 @@ public class RestClient {
     private final IFailure FAILURE;
     private final ISuccess SUCCESS;
     private final RequestBody REQUEST_BODY;
+    private final LoaderStyle LOADER_STYLE;
+    private final Context CONTEXT;
 
     public RestClient(String url, Map<String, Object> params, IRequest request,
                       IError error, IFailure failure,
-                      ISuccess success, RequestBody requestBody) {
+                      ISuccess success, RequestBody requestBody, Context context, LoaderStyle loaderStyle) {
         this.URL = url;
         PARAMS.putAll(params);
         this.REQUEST = request;
@@ -32,6 +38,8 @@ public class RestClient {
         this.FAILURE = failure;
         this.SUCCESS = success;
         this.REQUEST_BODY = requestBody;
+        this.LOADER_STYLE = loaderStyle;
+        this.CONTEXT = context;
     }
 
     public static RestClientBuilder builder() {
@@ -45,6 +53,10 @@ public class RestClient {
 
         if (REQUEST != null) {
             REQUEST.onRequestStart();
+        }
+
+        if (LOADER_STYLE != null) {
+            LatteLoader.showLoading(CONTEXT, LOADER_STYLE);
         }
 
         switch (method) {
@@ -69,8 +81,13 @@ public class RestClient {
         }
     }
 
-    public Callback<String> getRequestCallBack() {
-        return new RequestCallBacks(REQUEST, ERROR, FAILURE, SUCCESS);
+    private Callback<String> getRequestCallBack() {
+        return new RequestCallBacks(
+                REQUEST,
+                ERROR,
+                FAILURE,
+                SUCCESS,
+                LOADER_STYLE);
     }
 
     public final void get() {

@@ -1,9 +1,12 @@
 package com.examples.joshuayingwhat.latte.net;
 
+import android.content.Context;
+
 import com.examples.joshuayingwhat.latte.net.callback.IError;
 import com.examples.joshuayingwhat.latte.net.callback.IFailure;
 import com.examples.joshuayingwhat.latte.net.callback.IRequest;
 import com.examples.joshuayingwhat.latte.net.callback.ISuccess;
+import com.examples.joshuayingwhat.latte.ui.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -20,6 +23,8 @@ public class RestClientBuilder {
     private IFailure mIFailure;
     private ISuccess mISuccess;
     private RequestBody mRequestBody;
+    private Context mContext;
+    private LoaderStyle mLoaderStyle;
 
     public RestClientBuilder() {
     }
@@ -65,6 +70,31 @@ public class RestClientBuilder {
         return this;
     }
 
+    /**
+     * 自定义loader
+     *
+     * @param context
+     * @param loaderStyle
+     * @return
+     */
+    public final RestClientBuilder loader(Context context, LoaderStyle loaderStyle) {
+        this.mContext = context;
+        this.mLoaderStyle = loaderStyle;
+        return this;
+    }
+
+    /**
+     * 默认样式loader
+     *
+     * @param context
+     * @return
+     */
+    public final RestClientBuilder loader(Context context) {
+        this.mContext = context;
+        this.mLoaderStyle = LoaderStyle.BallClipRotateMultipleIndicator;
+        return this;
+    }
+
     //对map做处理
 //    private Map<String, Object> checkParams() {
 //        if (mParams == null) {
@@ -74,7 +104,7 @@ public class RestClientBuilder {
 //    }
 
     public final RestClient builder() {
-        return new RestClient(mUrl, PARAMS, mIRequest, mIError, mIFailure, mISuccess, mRequestBody);
+        return new RestClient(mUrl, PARAMS, mIRequest, mIError, mIFailure, mISuccess, mRequestBody, mContext, mLoaderStyle);
     }
 }
 
