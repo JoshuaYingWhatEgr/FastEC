@@ -27,6 +27,9 @@ public class RestClientBuilder {
     private Context mContext;
     private LoaderStyle mLoaderStyle;
     private File mFile;
+    private String mDownloadDir;
+    private String extension;
+    private String mName;
 
     public RestClientBuilder() {
     }
@@ -55,6 +58,43 @@ public class RestClientBuilder {
         this.mFile = new File(mFile);
         return this;
     }
+
+    /***
+     * 文件下载
+     */
+    public final RestClientBuilder dir(String mDownloadDir) {
+        this.mDownloadDir = mDownloadDir;
+        return this;
+    }
+
+    /**
+     * 文件后缀名
+     *
+     * @param extension
+     * @return
+     */
+    public final RestClientBuilder extension(String extension) {
+        this.extension = extension;
+        return this;
+    }
+
+    /**
+     * 文件名称
+     *
+     * @param mName
+     * @return
+     */
+    public final RestClientBuilder name(String mName) {
+        this.mName = mName;
+        return this;
+    }
+
+//    public final RestClientBuilder downloadFile(String mDownloadDir, String extension, String mName) {
+//        this.mDownloadDir = mDownloadDir;
+//        this.extension = extension;
+//        this.mName = mName;
+//        return this;
+//    }
 
     public final RestClientBuilder onRequest(IRequest mIRequest) {
         this.mIRequest = mIRequest;
@@ -116,7 +156,10 @@ public class RestClientBuilder {
 //    }
 
     public final RestClient builder() {
-        return new RestClient(mUrl, PARAMS, mIRequest, mIError, mIFailure, mISuccess, mRequestBody, mContext, mLoaderStyle, mFile);
+        return new RestClient(mUrl, PARAMS, mIRequest, mIError,
+                mIFailure, mISuccess, mRequestBody,
+                mContext, mLoaderStyle, mFile,
+                mDownloadDir, extension, mName);
     }
 }
 
