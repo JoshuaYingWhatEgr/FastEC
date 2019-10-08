@@ -100,7 +100,6 @@ public class RestClient {
                 break;
             case DOWNLOAD:
                 //文件下载
-
                 break;
             default:
                 break;

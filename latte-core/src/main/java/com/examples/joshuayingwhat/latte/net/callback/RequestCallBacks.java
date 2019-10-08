@@ -17,7 +17,9 @@ public class RequestCallBacks implements Callback<String> {
     private final ISuccess SUCCESS;
     private final LoaderStyle LOADER_STYLE;
 
-    public RequestCallBacks(IRequest request, IError error, IFailure ifailure, ISuccess iSuccess, LoaderStyle loaderStyle) {
+    public RequestCallBacks(IRequest request, IError error,
+                            IFailure ifailure, ISuccess iSuccess,
+                            LoaderStyle loaderStyle) {
         this.REQUEST = request;
         this.ERROR = error;
         this.FAILURE = ifailure;
