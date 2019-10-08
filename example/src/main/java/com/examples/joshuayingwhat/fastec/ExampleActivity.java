@@ -9,6 +9,7 @@ import com.examples.joshuayingwhat.latte.activities.ProxyActivity;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.ec.launcher.LauncherDelegate;
 import com.examples.joshuayingwhat.latte.ec.launcher.LauncherScrollDelegate;
+import com.examples.joshuayingwhat.latte.ec.sign.SignUpDelegate;
 
 /**
  * @author joshuayingwhat
@@ -26,6 +27,6 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new SignUpDelegate();
     }
 }
