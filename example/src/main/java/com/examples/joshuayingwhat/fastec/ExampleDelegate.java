@@ -30,9 +30,6 @@ public class ExampleDelegate extends LatteDelegate {
 
     private void test() {
 
-        Latte.init(getContext()).withApiHost("http://127.0.0.1/")
-                .withInterceptor(new DebugInterceptors("index", R.raw.test)).configure();
-
         RestClient.builder().url("http://127.0.0.1/index")
                 .loader(getContext())
                 .success(new ISuccess() {

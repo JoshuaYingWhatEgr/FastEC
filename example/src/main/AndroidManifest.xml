@@ -4,6 +4,7 @@
     package="com.examples.joshuayingwhat.fastec">
 
   <application
+      android:name=".ExampleApp"
       tools:replace="android:appComponentFactory"
       android:allowBackup="true"
       android:appComponentFactory=""

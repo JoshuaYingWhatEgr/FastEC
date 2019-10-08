@@ -1,5 +1,6 @@
 package com.examples.joshuayingwhat.latte.ec.launcher;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
@@ -9,6 +10,8 @@ import androidx.appcompat.widget.AppCompatTextView;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
+import com.examples.joshuayingwhat.latte.ui.launcher.ScrollLauncherTag;
+import com.examples.joshuayingwhat.latte.utils.storage.LattePreference;
 import com.examples.joshuayingwhat.latte.utils.timer.BaseTimerTask;
 import com.examples.joshuayingwhat.latte.utils.timer.ITimerListener;
 
@@ -44,6 +47,18 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         initTimer();
     }
 
+    /**
+     * 判断是否显示滑动启动页
+     */
+    private void checkIsShowingScroll() {
+        if (!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
+            start(new LauncherScrollDelegate(), SINGLETASK);
+        } else {
+            //检查用户是否登录了app
+
+        }
+    }
+
     @Override
     public void onTimer() {
         getProxyActivity().runOnUiThread(new Runnable() {
@@ -56,6 +71,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
                         if (mTimer != null) {
                             mTimer.cancel();
                             mTimer = null;
+                            checkIsShowingScroll();
                         }
                     }
                 }
@@ -72,8 +88,19 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         mTimer.schedule(task, 0, 1000);
     }
 
+    @SuppressLint("InvalidR2Usage")
     @OnClick(R2.id.tv_launcher_timer)
-    public void onViewClicked() {
-
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R2.id.tv_launcher_timer:
+                if (mTimer != null) {
+                    mTimer.cancel();
+                    mTimer = null;
+                    checkIsShowingScroll();
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
