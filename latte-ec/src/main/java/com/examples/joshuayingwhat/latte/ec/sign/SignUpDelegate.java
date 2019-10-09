@@ -104,7 +104,7 @@ public class SignUpDelegate extends LatteDelegate {
                         .success(new ISuccess() {
                             @Override
                             public void onSuccess(String response) {
-
+                                SignHandler.onSignUp(response);
                             }
                         }).error(new IError() {
                     @Override
