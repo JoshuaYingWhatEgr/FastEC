@@ -155,7 +155,7 @@ public class RestClientBuilder {
 //        return mParams;
 //    }
 
-    public final RestClient builder() {
+    public final RestClient build() {
         return new RestClient(mUrl, PARAMS, mIRequest, mIError,
                 mIFailure, mISuccess, mRequestBody,
                 mContext, mLoaderStyle, mFile,

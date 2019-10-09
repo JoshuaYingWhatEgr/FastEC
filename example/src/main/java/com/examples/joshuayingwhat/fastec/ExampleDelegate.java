@@ -6,13 +6,11 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.examples.joshuayingwhat.latte.app.Latte;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.net.RestClient;
 import com.examples.joshuayingwhat.latte.net.callback.IError;
 import com.examples.joshuayingwhat.latte.net.callback.IFailure;
 import com.examples.joshuayingwhat.latte.net.callback.ISuccess;
-import com.examples.joshuayingwhat.latte.net.interceptors.DebugInterceptors;
 
 /**
  * @author joshuayingwhat
@@ -50,6 +48,6 @@ public class ExampleDelegate extends LatteDelegate {
 
                     }
                 })
-                .builder().get();
+                .build().get();
     }
 }

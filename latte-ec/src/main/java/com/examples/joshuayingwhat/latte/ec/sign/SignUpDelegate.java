@@ -16,13 +16,12 @@ import com.examples.joshuayingwhat.latte.net.RestClient;
 import com.examples.joshuayingwhat.latte.net.callback.IError;
 import com.examples.joshuayingwhat.latte.net.callback.ISuccess;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 登录
+ * 注册界面
  */
 public class SignUpDelegate extends LatteDelegate {
     @BindView(R2.id.edit_sign_up_name)
@@ -98,28 +97,24 @@ public class SignUpDelegate extends LatteDelegate {
     @SuppressLint("InvalidR2Usage")
     @OnClick({R2.id.btn_sign_up, R2.id.tv_link_sign_in})
     public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R2.id.btn_sign_up:
-                //用户所有的信息都填写成功
-                if (checkForm()) {
-                    RestClient.builder().url("sign_up")
-                            .params("", "")
-                            .success(new ISuccess() {
-                                @Override
-                                public void onSuccess(String response) {
+        if (view.getId() == R.id.btn_sign_up) {//用户所有的信息都填写成功
+            if (checkForm()) {
+                RestClient.builder().url("sign_up")
+                        .params("", "")
+                        .success(new ISuccess() {
+                            @Override
+                            public void onSuccess(String response) {
 
-                                }
-                            }).error(new IError() {
-                        @Override
-                        public void onError(int code, String msg) {
+                            }
+                        }).error(new IError() {
+                    @Override
+                    public void onError(int code, String msg) {
 
-                        }
-                    }).builder().post();
-                }
-
-                break;
-            case R2.id.tv_link_sign_in:
-                break;
+                    }
+                }).build().post();
+            }
+        } else if (view.getId() == R.id.tv_link_sign_in) {
+            start(new SignInDelegate());
         }
     }
 }

@@ -5,6 +5,9 @@ import android.util.DisplayMetrics;
 
 import com.examples.joshuayingwhat.latte.app.Latte;
 
+/**
+ * @author joshuayingwhat
+ */
 public class DimenUtil {
 
     /**
