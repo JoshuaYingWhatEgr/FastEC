@@ -1,6 +1,7 @@
 package com.examples.joshuayingwhat.latte.ec.sign;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -38,6 +39,16 @@ public class SignUpDelegate extends LatteDelegate {
     AppCompatButton btnSignUp;
     @BindView(R2.id.tv_link_sign_in)
     AppCompatTextView tvLinkSignIn;
+
+    private ISignListener mISignListener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
+    }
 
     private boolean checkForm() {
         String name = editSignUpName.getText().toString();
@@ -104,7 +115,7 @@ public class SignUpDelegate extends LatteDelegate {
                         .success(new ISuccess() {
                             @Override
                             public void onSuccess(String response) {
-                                SignHandler.onSignUp(response);
+                                SignHandler.onSignUp(response, mISignListener);
                             }
                         }).error(new IError() {
                     @Override

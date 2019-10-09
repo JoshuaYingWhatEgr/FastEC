@@ -1,15 +1,20 @@
 package com.examples.joshuayingwhat.latte.ec.launcher;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.examples.joshuayingwhat.latte.app.AccountManager;
+import com.examples.joshuayingwhat.latte.app.IUserCheck;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
+import com.examples.joshuayingwhat.latte.ui.launcher.ILauncherListener;
+import com.examples.joshuayingwhat.latte.ui.launcher.OnLauncherFinishTag;
 import com.examples.joshuayingwhat.latte.ui.launcher.ScrollLauncherTag;
 import com.examples.joshuayingwhat.latte.utils.storage.LattePreference;
 import com.examples.joshuayingwhat.latte.utils.timer.BaseTimerTask;
@@ -36,6 +41,15 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     private Timer mTimer = null;
 
     private int mCount = 5;
+    private ILauncherListener iLauncherListener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ILauncherListener) {
+            iLauncherListener = (ILauncherListener) activity;
+        }
+    }
 
     @Override
     public Object setLayout() {
@@ -55,7 +69,19 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
             start(new LauncherScrollDelegate(), SINGLETASK);
         } else {
             //检查用户是否登录了app
+            AccountManager.checkAccount(new IUserCheck() {
+                @Override
+                public void onSignIn() {
+                    if (iLauncherListener != null) {
+                        iLauncherListener.onLauncherFinish(OnLauncherFinishTag.SINGED);
+                    }
+                }
 
+                @Override
+                public void onSignNotIn() {
+                    iLauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SINGED);
+                }
+            });
         }
     }
 
@@ -91,16 +117,12 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     @SuppressLint("InvalidR2Usage")
     @OnClick(R2.id.tv_launcher_timer)
     public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R2.id.tv_launcher_timer:
-                if (mTimer != null) {
-                    mTimer.cancel();
-                    mTimer = null;
-                    checkIsShowingScroll();
-                }
-                break;
-            default:
-                break;
+        if (view.getId() == R.id.tv_launcher_timer) {
+            if (mTimer != null) {
+                mTimer.cancel();
+                mTimer = null;
+                checkIsShowingScroll();
+            }
         }
     }
 }

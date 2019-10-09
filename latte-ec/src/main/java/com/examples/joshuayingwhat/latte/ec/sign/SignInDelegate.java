@@ -1,6 +1,7 @@
 package com.examples.joshuayingwhat.latte.ec.sign;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -37,6 +38,16 @@ public class SignInDelegate extends LatteDelegate {
     AppCompatTextView tvLinkSignUp;
     @BindView(R2.id.icon_sign_in_wechat)
     IconTextView iconSignInWechat;
+
+    private ISignListener iSignListener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if(activity instanceof ISignListener) {
+            iSignListener = (ISignListener) activity;
+        }
+    }
 
     public boolean checkForm() {
 
@@ -77,6 +88,9 @@ public class SignInDelegate extends LatteDelegate {
     public void onViewClicked(View view) {
         int id = view.getId();//登录
         if (id == R.id.btn_sign_in) {
+            if(checkForm()) {
+
+            }
 
         } else if (id == R.id.tv_link_sign_up) {//还没有注册 去注册
 
