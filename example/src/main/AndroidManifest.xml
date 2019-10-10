@@ -3,23 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.examples.joshuayingwhat.fastec">
 
-  <application
-      android:name=".ExampleApp"
-      tools:replace="android:appComponentFactory"
-      android:allowBackup="true"
-      android:appComponentFactory=""
-      android:icon="@mipmap/ic_launcher"
-      android:label="@string/app_name"
-      android:roundIcon="@mipmap/ic_launcher_round"
-      android:supportsRtl="true"
-      android:theme="@style/AppTheme">
-    <activity android:name=".ExampleActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
+    <application
+        android:name=".ExampleApp"
+        android:allowBackup="true"
+        android:appComponentFactory=""
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:appComponentFactory">
+        <activity android:name=".ExampleActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER"/>
-      </intent-filter>
-    </activity>
-  </application>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:name="com.examples.joshuayingwhat.latte.wechat.templte.WXEntryTemplate"
+            android:exported="true"
+            android:label="微信回调"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>

@@ -1,5 +1,9 @@
 package com.examples.joshuayingwhat.latte.app;
 
+import android.app.Activity;
+import android.content.Context;
+import android.os.IInterface;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -90,6 +94,29 @@ public class Configurator {
         return this;
     }
 
+    /**
+     * 设置微信app id
+     *
+     * @param appId
+     * @return
+     */
+    public final Configurator withWeChatAppId(String appId) {
+        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID.name(), appId);
+        return this;
+    }
+
+    /**
+     * 设置微信WE_CHAT_APP_SECRET
+     */
+    public final Configurator withWeChatAppSecret(String weChatAppSecret) {
+        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET.name(), weChatAppSecret);
+        return this;
+    }
+
+    public final Configurator withActivity(Activity activity) {
+        LATTE_CONFIGS.put(ConfigKeys.ACTIVITY.name(), activity);
+        return this;
+    }
 
     /**
      * 检查配置项是否完成

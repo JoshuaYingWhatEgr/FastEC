@@ -10,9 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.examples.joshuayingwhat.latte.app.Latte;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
+import com.examples.joshuayingwhat.latte.wechat.LatteWeChat;
+import com.examples.joshuayingwhat.latte.wechat.callback.IWeChatSignInCallBack;
 import com.google.android.material.textfield.TextInputEditText;
 import com.joanzapata.iconify.widget.IconTextView;
 
@@ -44,7 +47,7 @@ public class SignInDelegate extends LatteDelegate {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if(activity instanceof ISignListener) {
+        if (activity instanceof ISignListener) {
             iSignListener = (ISignListener) activity;
         }
     }
@@ -88,16 +91,21 @@ public class SignInDelegate extends LatteDelegate {
     public void onViewClicked(View view) {
         int id = view.getId();//登录
         if (id == R.id.btn_sign_in) {
-            if(checkForm()) {
+            if (checkForm()) {
 
             }
 
         } else if (id == R.id.tv_link_sign_up) {//还没有注册 去注册
 
-            start(new SignUpDelegate());
+            startWithPop(new SignUpDelegate());
 
         } else if (id == R.id.icon_sign_in_wechat) {//微信登录
+            LatteWeChat.getInstance().onSignInSuccess(new IWeChatSignInCallBack() {
+                @Override
+                public void onSignInSuccess(String userInfo) {
 
+                }
+            }).signIn();
         }
     }
 }
