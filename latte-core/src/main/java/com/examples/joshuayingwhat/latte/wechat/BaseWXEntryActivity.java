@@ -8,6 +8,9 @@ import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
+/**
+ * @author joshuayingwhat
+ */
 public abstract class BaseWXEntryActivity extends BaseWXActivity {
 
     /**

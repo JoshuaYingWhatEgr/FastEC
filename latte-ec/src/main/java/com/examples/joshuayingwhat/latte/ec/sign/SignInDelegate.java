@@ -103,7 +103,7 @@ public class SignInDelegate extends LatteDelegate {
             LatteWeChat.getInstance().onSignInSuccess(new IWeChatSignInCallBack() {
                 @Override
                 public void onSignInSuccess(String userInfo) {
-
+                    
                 }
             }).signIn();
         }
