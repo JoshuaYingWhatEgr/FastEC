@@ -10,6 +10,7 @@ import com.examples.joshuayingwhat.latte.activities.ProxyActivity;
 import com.examples.joshuayingwhat.latte.app.Latte;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.ec.launcher.LauncherDelegate;
+import com.examples.joshuayingwhat.latte.ec.main.EcBottomDelegate;
 import com.examples.joshuayingwhat.latte.ec.sign.ISignListener;
 import com.examples.joshuayingwhat.latte.ec.sign.SignInDelegate;
 import com.examples.joshuayingwhat.latte.ui.launcher.ILauncherListener;
@@ -56,7 +57,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         switch (tag) {
             case SINGED://已经登录了
                 Toast.makeText(this, "启动结束,用户已经登录了", Toast.LENGTH_SHORT).show();
-                startWithPop(new ExampleDelegate());
+                startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SINGED://没有登录
                 Toast.makeText(this, "启动结束,用户没登录", Toast.LENGTH_SHORT).show();

@@ -14,6 +14,7 @@ import com.examples.joshuayingwhat.latte.app.Latte;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
+import com.examples.joshuayingwhat.latte.ec.main.EcBottomDelegate;
 import com.examples.joshuayingwhat.latte.wechat.LatteWeChat;
 import com.examples.joshuayingwhat.latte.wechat.callback.IWeChatSignInCallBack;
 import com.google.android.material.textfield.TextInputEditText;
@@ -92,7 +93,7 @@ public class SignInDelegate extends LatteDelegate {
         int id = view.getId();//登录
         if (id == R.id.btn_sign_in) {
             if (checkForm()) {
-
+                startWithPop(new EcBottomDelegate());
             }
 
         } else if (id == R.id.tv_link_sign_up) {//还没有注册 去注册
