@@ -1,6 +1,5 @@
 package com.examples.joshuayingwhat.latte.ec.main.index;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
@@ -13,7 +12,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.examples.joshuayingwhat.latte.delegates.bottom.BottomItemDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
-import com.examples.joshuayingwhat.latte.ui.recycler.RefreshHandler;
+import com.examples.joshuayingwhat.latte.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
@@ -55,6 +54,7 @@ public class IndexDelegate extends BottomItemDelegate {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         initRefteshLayout();
+        mRefreshHandler.firstPage("index.php");
     }
 
     @Override

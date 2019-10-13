@@ -14,7 +14,7 @@ public class ExampleApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Latte.init(this).withApiHost("http://127.0.0.1/")
+        Latte.init(this).withApiHost("http://192.168.4.68:8080/RestServer/api/")
                 .withWeChatAppId("")
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
