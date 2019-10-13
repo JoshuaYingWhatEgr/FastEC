@@ -109,6 +109,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         }
 
         final SupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new SupportFragment[size]);
+        //将每个模块的delegate放载到framelayout
         loadMultipleRootFragment(R.id.bottom_bar_delegate_container, mIndexDelegate, delegateArray);
     }
 

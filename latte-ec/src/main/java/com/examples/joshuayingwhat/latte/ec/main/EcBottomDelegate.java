@@ -23,6 +23,7 @@ public class EcBottomDelegate extends BaseBottomDelegate {
         return builder.addItems(items).build();
     }
 
+    //启识页面
     @Override
     public int setIndexDelegate() {
         return 0;
