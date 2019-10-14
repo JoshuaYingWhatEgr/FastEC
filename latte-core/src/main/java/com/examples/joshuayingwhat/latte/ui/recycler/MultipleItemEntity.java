@@ -5,7 +5,6 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.util.LinkedHashMap;
-import java.util.WeakHashMap;
 
 public class MultipleItemEntity implements MultiItemEntity {
 
@@ -13,6 +12,9 @@ public class MultipleItemEntity implements MultiItemEntity {
 
     private final LinkedHashMap<Object, Object> MULTIPLE_FIELDS = new LinkedHashMap<>();
 
+    /**
+     * 这里使用软引用是为了防止LinkedHashMap占用的内存过大导致oom
+     */
     private final SoftReference<LinkedHashMap<Object, Object>> FIELDS_REFERENCE =
             new SoftReference<LinkedHashMap<Object, Object>>(MULTIPLE_FIELDS, ITEM_QUENE);
 
@@ -24,7 +26,7 @@ public class MultipleItemEntity implements MultiItemEntity {
     @Override
     public int getItemType() {
 
-        return (int) FIELDS_REFERENCE.get().get(MutilpleFields.ITEM_TYPE);
+        return (int) FIELDS_REFERENCE.get().get(MultipleFields.ITEM_TYPE);
     }
 
     public final <T> T getFields(Object key) {

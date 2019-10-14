@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -45,6 +46,12 @@ public class IndexDelegate extends BottomItemDelegate {
         mRefreshLayout.setProgressViewOffset(true, 120, 300);
     }
 
+    //初始化recyclerview的布局
+    private void initRecyclerView() {
+        final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
+        mRecycler.setLayoutManager(manager);
+    }
+
     /**
      * 懒加载不要每次切换界面都刷新
      *
@@ -64,6 +71,6 @@ public class IndexDelegate extends BottomItemDelegate {
 
     @Override
     public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
-        mRefreshHandler = new RefreshHandler(mRefreshLayout);
+        mRefreshHandler = RefreshHandler.creator(mRefreshLayout, mRecycler, new IndexDataConvert());
     }
 }

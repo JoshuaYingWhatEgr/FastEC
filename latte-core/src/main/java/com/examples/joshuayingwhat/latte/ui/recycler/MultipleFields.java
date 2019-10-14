@@ -1,6 +1,6 @@
 package com.examples.joshuayingwhat.latte.ui.recycler;
 
-public enum  MutilpleFields {
+public enum MultipleFields {
     ITEM_TYPE,
     TEXT,
     IMAGE_URL,

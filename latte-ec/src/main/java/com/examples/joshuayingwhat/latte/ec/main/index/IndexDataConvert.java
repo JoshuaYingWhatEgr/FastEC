@@ -1,12 +1,11 @@
 package com.examples.joshuayingwhat.latte.ec.main.index;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.examples.joshuayingwhat.latte.ui.recycler.DataConverer;
 import com.examples.joshuayingwhat.latte.ui.recycler.ItemType;
 import com.examples.joshuayingwhat.latte.ui.recycler.MultipleItemEntity;
-import com.examples.joshuayingwhat.latte.ui.recycler.MutilpleFields;
+import com.examples.joshuayingwhat.latte.ui.recycler.MultipleFields;
 
 import java.util.ArrayList;
 
@@ -43,12 +42,12 @@ public class IndexDataConvert extends DataConverer {
             }
 
             final MultipleItemEntity entity = MultipleItemEntity.builder()
-                    .setField(MutilpleFields.ITEM_TYPE,type)
-                    .setField(MutilpleFields.SPAN_SIZE,spanSize)
-                    .setField(MutilpleFields.ID,id)
-                    .setField(MutilpleFields.TEXT,text)
-                    .setField(MutilpleFields.IMAGE_URL,imageUrl)
-                    .setField(MutilpleFields.BANNERS,bannerImages)
+                    .setField(MultipleFields.ITEM_TYPE,type)
+                    .setField(MultipleFields.SPAN_SIZE,spanSize)
+                    .setField(MultipleFields.ID,id)
+                    .setField(MultipleFields.TEXT,text)
+                    .setField(MultipleFields.IMAGE_URL,imageUrl)
+                    .setField(MultipleFields.BANNERS,bannerImages)
                     .build();
 
             ENTITIES.add(entity);

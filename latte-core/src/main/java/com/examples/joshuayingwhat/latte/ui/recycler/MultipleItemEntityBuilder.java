@@ -1,8 +1,6 @@
 package com.examples.joshuayingwhat.latte.ui.recycler;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.WeakHashMap;
 
 public class MultipleItemEntityBuilder {
 
@@ -14,7 +12,7 @@ public class MultipleItemEntityBuilder {
     }
 
     public MultipleItemEntityBuilder setItemType(int itemType) {
-        FIELDS.put(MutilpleFields.ITEM_TYPE, itemType);
+        FIELDS.put(MultipleFields.ITEM_TYPE, itemType);
         return this;
     }
 
