@@ -51,13 +51,13 @@ public class VerticalListDelegate extends LatteDelegate {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         //网络请求获取数据
-        getClassifyList();
+        initData();
     }
 
     /***
      * 获取分类列表
      */
-    private void getClassifyList() {
+    private void initData() {
         RestClient.builder().url("sort_list.php")
                 .loader(getContext())
                 .success(new ISuccess() {
