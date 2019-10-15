@@ -2,6 +2,7 @@ package com.examples.joshuayingwhat.latte.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.Window;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.ContentFrameLayout;
@@ -28,6 +29,7 @@ public abstract class ProxyActivity extends SupportActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         initContainer(savedInstanceState);
     }
 

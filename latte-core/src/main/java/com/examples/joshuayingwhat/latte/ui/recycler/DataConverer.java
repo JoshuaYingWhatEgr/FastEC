@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * 数据的转换处理
+ * @author joshuayingwhat
  */
 public abstract class DataConverer {
 
@@ -18,7 +19,7 @@ public abstract class DataConverer {
         return this;
     }
 
-    public String getJsonData() {
+    protected String getJsonData() {
         if (mJsonDta == null || mJsonDta.isEmpty()) {
             throw new NullPointerException("DATA IS NULL!");
         }

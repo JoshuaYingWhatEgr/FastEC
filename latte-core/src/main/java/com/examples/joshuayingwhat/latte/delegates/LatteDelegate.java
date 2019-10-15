@@ -7,8 +7,13 @@ import androidx.annotation.Nullable;
 
 /**
  * 正式使用的delegate
+ *
  * @author joshuayingwhat
  */
 public abstract class LatteDelegate extends PermissionCheckerDelegate {
+
+    public <T extends LatteDelegate> T getParentDelegate() {
+        return (T) getParentFragment();
+    }
 
 }

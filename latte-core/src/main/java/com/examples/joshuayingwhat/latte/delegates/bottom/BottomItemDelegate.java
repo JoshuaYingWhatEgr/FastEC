@@ -22,12 +22,12 @@ public abstract class BottomItemDelegate extends LatteDelegate implements View.O
     public void onResume() {
         super.onResume();
         // TODO: 2019-10-11  这里解决重新返回fragment 点击事件不生效的情况
-//        final View rootView = getView();
-//        if (rootView != null) {
-//            rootView.setFocusableInTouchMode(true);
-//            rootView.requestFocus();
-//            rootView.setOnKeyListener(this);
-//        }
+        final View rootView = getView();
+        if (rootView != null) {
+            rootView.setFocusableInTouchMode(true);
+            rootView.requestFocus();
+            rootView.setOnKeyListener(this);
+        }
     }
 
     @Override

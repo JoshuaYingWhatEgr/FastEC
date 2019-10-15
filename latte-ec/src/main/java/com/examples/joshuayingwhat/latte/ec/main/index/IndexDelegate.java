@@ -14,12 +14,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.examples.joshuayingwhat.latte.delegates.bottom.BottomItemDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
+import com.examples.joshuayingwhat.latte.ec.main.EcBottomDelegate;
 import com.examples.joshuayingwhat.latte.ui.recycler.BaseDecoration;
 import com.examples.joshuayingwhat.latte.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
 
+/**
+ * 这里是主页界面
+ */
 public class IndexDelegate extends BottomItemDelegate {
     @BindView(R2.id.rv_index)
     RecyclerView mRecycler;
@@ -54,6 +58,11 @@ public class IndexDelegate extends BottomItemDelegate {
         mRecycler.setLayoutManager(manager);
         //添加分割线
         mRecycler.addItemDecoration(BaseDecoration.creator(ContextCompat.getColor(getContext(), R.color.app_background), 5));
+        //获取父级元素
+        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+        //添加布局点击事件
+        //如果这个不传ecBottomDelegate父布局 而是传当前delegate的this底部的bottom就会还在
+        mRecycler.addOnItemTouchListener(IndexItemClickListener.creator(ecBottomDelegate));
     }
 
     /**
@@ -66,7 +75,7 @@ public class IndexDelegate extends BottomItemDelegate {
         super.onLazyInitView(savedInstanceState);
         initRefteshLayout();
         initRecyclerView();
-        mRefreshHandler.firstPage("index.php");
+//        mRefreshHandler.firstPage("index.php");
     }
 
     @Override

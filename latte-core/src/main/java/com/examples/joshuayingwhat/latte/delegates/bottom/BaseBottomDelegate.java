@@ -93,8 +93,8 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
             LayoutInflater.from(getContext()).inflate(R.layout.bottom_item_icon_text_layout, bottomBar);
             //从bottombar中去除bar
             final RelativeLayout item = (RelativeLayout) bottomBar.getChildAt(i);
-            //设置每个item的点击事件
             item.setTag(i);
+            //设置每个item的点击事件
             item.setOnClickListener(this);
             final IconTextView itemIcon = (IconTextView) item.getChildAt(0);
             final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
