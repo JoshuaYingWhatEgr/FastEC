@@ -7,4 +7,5 @@
   <string name="sign_repetition_password">重复密码</string>
   <string name="sign_login">已经注册了？请登录</string>
     <string name="index_search">搜索</string>
+    <string name="discover">发现</string>
 </resources>

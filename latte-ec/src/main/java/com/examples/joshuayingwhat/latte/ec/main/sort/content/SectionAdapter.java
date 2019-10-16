@@ -26,7 +26,7 @@ public class SectionAdapter extends BaseSectionQuickAdapter<SectionBean, BaseVie
      * @param sectionHeadResId The section head layout id for each item
      * @param data             A new list is created out of this one to avoid mutable list
      */
-    public SectionAdapter(int layoutResId, int sectionHeadResId, List<SectionBean> data) {
+    SectionAdapter(int layoutResId, int sectionHeadResId, List<SectionBean> data) {
         super(layoutResId, sectionHeadResId, data);
     }
 

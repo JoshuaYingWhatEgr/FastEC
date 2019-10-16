@@ -6,6 +6,7 @@ import com.examples.joshuayingwhat.latte.delegates.bottom.BaseBottomDelegate;
 import com.examples.joshuayingwhat.latte.delegates.bottom.BottomItemDelegate;
 import com.examples.joshuayingwhat.latte.delegates.bottom.BottomTableBean;
 import com.examples.joshuayingwhat.latte.delegates.bottom.ItemBuilder;
+import com.examples.joshuayingwhat.latte.ec.main.discover.DiscoverDelegate;
 import com.examples.joshuayingwhat.latte.ec.main.index.IndexDelegate;
 import com.examples.joshuayingwhat.latte.ec.main.sort.SortDelegate;
 
@@ -17,7 +18,7 @@ public class EcBottomDelegate extends BaseBottomDelegate {
         final LinkedHashMap<BottomTableBean, BottomItemDelegate> items = new LinkedHashMap<>();
         items.put(new BottomTableBean("{fa-home}", "主页"), new IndexDelegate());
         items.put(new BottomTableBean("{fa-sort}", "分类"), new SortDelegate());
-        items.put(new BottomTableBean("{fa-compass}", "发现"), new IndexDelegate());
+        items.put(new BottomTableBean("{fa-compass}", "发现"), new DiscoverDelegate());
         items.put(new BottomTableBean("{fa-shopping-cart}", "购物车"), new IndexDelegate());
         items.put(new BottomTableBean("{fa-user}", "我的"), new IndexDelegate());
         return builder.addItems(items).build();
