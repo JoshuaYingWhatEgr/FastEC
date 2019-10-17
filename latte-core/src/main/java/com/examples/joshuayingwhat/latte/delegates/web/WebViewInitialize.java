@@ -3,16 +3,26 @@ package com.examples.joshuayingwhat.latte.delegates.web;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import androidx.annotation.RequiresApi;
+
 
 public class WebViewInitialize implements View.OnLongClickListener {
 
     @SuppressLint("SetJavaScriptEnabled")
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public WebView createWebView(WebView webView) {
+
+        //cookie相关
+        final CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            cookieManager.setAcceptThirdPartyCookies(webView, true);
+        }
+        CookieManager.setAcceptFileSchemeCookies(true);
 
 
         /**

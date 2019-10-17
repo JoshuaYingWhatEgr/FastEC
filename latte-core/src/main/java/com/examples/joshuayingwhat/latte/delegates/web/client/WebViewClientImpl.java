@@ -1,23 +1,21 @@
 package com.examples.joshuayingwhat.latte.delegates.web.client;
 
 import android.graphics.Bitmap;
-import android.view.View;
-import android.webkit.WebResourceRequest;
+import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.examples.joshuayingwhat.latte.app.ConfigKeys;
 import com.examples.joshuayingwhat.latte.app.Latte;
 import com.examples.joshuayingwhat.latte.delegates.IPageLoadListener;
 import com.examples.joshuayingwhat.latte.delegates.web.WebDelegate;
 import com.examples.joshuayingwhat.latte.delegates.web.route.Router;
-import com.examples.joshuayingwhat.latte.ui.LatteLoader;
-
-import java.io.InvalidClassException;
+import com.examples.joshuayingwhat.latte.utils.storage.LattePreference;
 
 /**
  * @author joshuayingwhat
  */
-public class WebViewClientImpl extends WebViewClient{
+public class WebViewClientImpl extends WebViewClient {
 
     private final WebDelegate DELEGATE;
 
@@ -46,12 +44,35 @@ public class WebViewClientImpl extends WebViewClient{
         mIPageLoadListener.onLoadStart();
     }
 
+    /**
+     * 同步cookie
+     */
+    private void syncCookie() {
+        final CookieManager manager = CookieManager.getInstance();
+        //这里的cookie和api中的cookie不一样
+        final String webHost = (String) Latte.getConfigurations().get(ConfigKeys.WEB_HOST.name());
+        if (webHost != null) {
+            if (manager.hasCookies()) {
+                final String cookieStr = manager.getCookie(webHost);
+                if (cookieStr != null && !cookieStr.isEmpty()) {
+                    LattePreference.addCustomAppProfile("cookie", cookieStr);
+                }
+            }
+        } else {
+            throw new NullPointerException("WEB HOST 不能为空!");
+        }
+
+    }
+
+
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
         if (mIPageLoadListener == null) {
             throw new RuntimeException("IPageLoadListener 接口未初始化!");
         }
+        //同步cookie
+        syncCookie();
         mIPageLoadListener.onLoadEnd();
     }
 }

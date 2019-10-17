@@ -14,5 +14,6 @@ public enum ConfigKeys {
     WE_CHAT_APP_ID,
     WE_CHAT_APP_SECRET,
     ACTIVITY,
-    JAVASCRIPT
+    JAVASCRIPT,
+    WEB_HOST
 }

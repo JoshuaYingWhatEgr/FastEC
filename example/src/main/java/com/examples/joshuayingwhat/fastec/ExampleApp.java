@@ -6,6 +6,7 @@ import com.examples.joshuayingwhat.latte.app.Latte;
 import com.examples.joshuayingwhat.latte.ec.database.DataBaseManager;
 import com.examples.joshuayingwhat.latte.ec.icon.FontEcModule;
 import com.examples.joshuayingwhat.latte.net.interceptors.DebugInterceptors;
+import com.examples.joshuayingwhat.latte.net.rx.AddCookieInterceptor;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
@@ -21,6 +22,8 @@ public class ExampleApp extends Application {
                 .withWeChatAppSecret("")
                 .withJavaScriptInterface("latte")
                 .withWebEvent("test", new TestEvent())
+                .withInterceptor(new AddCookieInterceptor())
+                .withWebHost("http://www.baidu.com/")
                 .withInterceptor(new DebugInterceptors("index", R.raw.test)).configure();
         initStetho();
         /**
