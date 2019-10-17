@@ -15,6 +15,7 @@ import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
+ * 发现界面
  * @author joshuayingwhat
  */
 public class DiscoverDelegate extends BottomItemDelegate implements IPageLoadListener {
