@@ -5,9 +5,11 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.examples.joshuayingwhat.latte.delegates.IPageLoadListener;
 import com.examples.joshuayingwhat.latte.delegates.bottom.BottomItemDelegate;
-import com.examples.joshuayingwhat.latte.delegates.web.WebViewDelegateImpl;
+import com.examples.joshuayingwhat.latte.delegates.web.WebDelegateImpl;
 import com.examples.joshuayingwhat.latte.ec.R;
+import com.examples.joshuayingwhat.latte.ui.LatteLoader;
 
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
@@ -15,7 +17,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 /**
  * @author joshuayingwhat
  */
-public class DiscoverDelegate extends BottomItemDelegate {
+public class DiscoverDelegate extends BottomItemDelegate implements IPageLoadListener {
 
     @Override
     public Object setLayout() {
@@ -30,12 +32,24 @@ public class DiscoverDelegate extends BottomItemDelegate {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        final WebViewDelegateImpl delegate = WebViewDelegateImpl.create("index.html");
-        loadRootFragment(R.id.web_discovery_container,delegate);
+        final WebDelegateImpl delegate = WebDelegateImpl.create("index.html");
+        delegate.setPageLoadListener(this);
+        delegate.setTopDelegate(this.getParentDelegate());
+        loadRootFragment(R.id.web_discovery_container, delegate);
     }
 
     @Override
     public FragmentAnimator onCreateFragmentAnimator() {
         return new DefaultHorizontalAnimator();
+    }
+
+    @Override
+    public void onLoadStart() {
+        LatteLoader.showLoading(getContext());
+    }
+
+    @Override
+    public void onLoadEnd() {
+        LatteLoader.stopLoading();
     }
 }

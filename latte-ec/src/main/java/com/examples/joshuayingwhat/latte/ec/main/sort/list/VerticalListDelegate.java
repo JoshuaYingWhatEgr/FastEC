@@ -51,7 +51,7 @@ public class VerticalListDelegate extends LatteDelegate {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         //网络请求获取数据
-        initData();
+//        initData();
     }
 
     /***

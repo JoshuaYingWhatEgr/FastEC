@@ -8,7 +8,7 @@ import android.webkit.WebView;
 
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.delegates.web.WebDelegate;
-import com.examples.joshuayingwhat.latte.delegates.web.WebViewDelegateImpl;
+import com.examples.joshuayingwhat.latte.delegates.web.WebDelegateImpl;
 
 public class Router {
 
@@ -33,13 +33,17 @@ public class Router {
             return true;
         }
 
-        final LatteDelegate parentDelegate = delegate.getParentDelegate();
-        final WebViewDelegateImpl webViewDelegate = WebViewDelegateImpl.create(url);
-        if (parentDelegate == null) {
-            delegate.start(webViewDelegate);
-        } else {
-            parentDelegate.start(webViewDelegate);
-        }
+        final LatteDelegate topDelegate = delegate.getTopDelegate();
+//
+//        final LatteDelegate parentDelegate = delegate.getParentDelegate();
+        final WebDelegateImpl webViewDelegate = WebDelegateImpl.create(url);
+//        if (parentDelegate == null) {
+//            delegate.start(webViewDelegate);
+//        } else {
+//            parentDelegate.start(webViewDelegate);
+//        }
+
+        topDelegate.start(webViewDelegate);
         return true;
     }
 
@@ -52,7 +56,7 @@ public class Router {
     }
 
     private void loadLocalPage(WebView webView, String url) {
-        loadWebPage(webView, "file:///android_asste/" + url);
+        loadWebPage(webView, "file:///android_asset/" + url);
     }
 
     public void loadPage(WebView webView, String url) {

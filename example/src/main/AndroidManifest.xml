@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.examples.joshuayingwhat.fastec">
 
-
     <application
         android:name=".ExampleApp"
         android:allowBackup="true"
@@ -23,17 +22,19 @@
         </activity>
 
         <activity
-            android:theme="@style/Theme.AppCompat.Translucent"
             android:name="com.examples.joshuayingwhat.latte.wechat.templte.WXEntryTemplate"
             android:exported="true"
             android:label="微信回调"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:launchMode="singleTask">
+            android:theme="@style/Theme.AppCompat.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

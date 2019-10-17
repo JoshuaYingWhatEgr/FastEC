@@ -1,5 +1,6 @@
 package com.examples.joshuayingwhat.latte.delegates.web;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -9,6 +10,7 @@ import androidx.annotation.RequiresApi;
 
 public class WebViewInitialize implements View.OnLongClickListener {
 
+    @SuppressLint("SetJavaScriptEnabled")
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public WebView createWebView(WebView webView) {
 
@@ -31,6 +33,7 @@ public class WebViewInitialize implements View.OnLongClickListener {
         final WebSettings settings = webView.getSettings();
         String ua = settings.getUserAgentString();
         settings.setUserAgentString(ua + "Latte");
+        settings.setJavaScriptEnabled(true);
         //隐藏缩放控件
         settings.setBuiltInZoomControls(false);
         settings.setDisplayZoomControls(false);

@@ -10,17 +10,24 @@ import android.webkit.WebViewClient;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.examples.joshuayingwhat.latte.delegates.IPageLoadListener;
 import com.examples.joshuayingwhat.latte.delegates.web.chromclient.WebChormClientImpl;
 import com.examples.joshuayingwhat.latte.delegates.web.client.WebViewClientImpl;
 import com.examples.joshuayingwhat.latte.delegates.web.route.RouteKeys;
 import com.examples.joshuayingwhat.latte.delegates.web.route.Router;
 
-public class WebViewDelegateImpl extends WebDelegate {
+public class WebDelegateImpl extends WebDelegate {
 
-    public static WebViewDelegateImpl create(String url) {
+    private IPageLoadListener mIPageLoadListener = null;
+
+    public void setPageLoadListener(IPageLoadListener mIPageLoadListener) {
+        this.mIPageLoadListener = mIPageLoadListener;
+    }
+
+    public static WebDelegateImpl create(String url) {
         final Bundle args = new Bundle();
         args.putString(RouteKeys.URL.name(), url);
-        final WebViewDelegateImpl delegate = new WebViewDelegateImpl();
+        final WebDelegateImpl delegate = new WebDelegateImpl();
         delegate.setArguments(args);
         return delegate;
     }
@@ -51,6 +58,7 @@ public class WebViewDelegateImpl extends WebDelegate {
     @Override
     public WebViewClient initWebViewClient() {
         final WebViewClientImpl client = new WebViewClientImpl(this);
+        client.setPageLoadListener(mIPageLoadListener);
         return client;
     }
 

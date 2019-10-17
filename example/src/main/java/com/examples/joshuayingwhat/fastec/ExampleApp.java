@@ -19,6 +19,8 @@ public class ExampleApp extends Application {
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
                 .withWeChatAppSecret("")
+                .withJavaScriptInterface("latte")
+                .withWebEvent("test", new TestEvent())
                 .withInterceptor(new DebugInterceptors("index", R.raw.test)).configure();
         initStetho();
         /**
