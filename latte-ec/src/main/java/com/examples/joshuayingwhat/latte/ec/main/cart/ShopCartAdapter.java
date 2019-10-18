@@ -46,6 +46,14 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
         this.mIsSelectedAll = mIsSelectedAll;
     }
 
+    public void setmCartItemListener(ICartItemListener iCartItemListener) {
+        this.mCartItemListener = iCartItemListener;
+    }
+
+    public double getmTotalPrice() {
+        return mTotalPrice;
+    }
+
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -32,7 +33,7 @@ import butterknife.OnClick;
  *
  * @author joshuayingwhat
  */
-public class ShopCartDelegate extends BottomItemDelegate {
+public class ShopCartDelegate extends BottomItemDelegate implements ICartItemListener {
 
     //购物车数量标记
     private int mCurrentCount = 0;
@@ -46,11 +47,11 @@ public class ShopCartDelegate extends BottomItemDelegate {
     @BindView(R2.id.rv_shop_cart)
     RecyclerView mRecyclerView;
     @BindView(R2.id.stub_no_item)
-    ViewStub stubNoItem;
+    ViewStub mStubNoItem;
     @BindView(R2.id.icon_shop_cart_select_all)
     IconTextView mIconSelectAll;
     @BindView(R2.id.tv_shop_cart_total_price)
-    AppCompatTextView tvShopCartTotalPrice;
+    AppCompatTextView mTotalPrice;
     @BindView(R2.id.tv_shop_cart_pay)
     AppCompatTextView tvShopCartPay;
     private ShopCartAdapter mAdapter;
@@ -84,6 +85,10 @@ public class ShopCartDelegate extends BottomItemDelegate {
                     }
                 })
                 .build().get();
+
+        mAdapter.setmCartItemListener(this);
+
+        checkItemCount();
     }
 
     @SuppressLint("ResourceType")
@@ -130,6 +135,7 @@ public class ShopCartDelegate extends BottomItemDelegate {
                 mAdapter.notifyItemRangeChanged(removePosition, mAdapter.getItemCount());
             }
         }
+        checkItemCount();
     }
 
     /**
@@ -141,5 +147,40 @@ public class ShopCartDelegate extends BottomItemDelegate {
     void onClickCartClear(View view) {
         mAdapter.getData().clear();
         mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
+        checkItemCount();
+    }
+
+    /**
+     * 检查购物车是否有数据
+     */
+    private void checkItemCount() {
+        final int count = mAdapter.getItemCount();
+        if (count == 0) {
+            final View stubView = mStubNoItem.inflate();
+            final AppCompatTextView tvToBuy = stubView.findViewById(R.id.tv_stub_to_buy);
+            tvToBuy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "您该购物了", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            mRecyclerView.setVisibility(View.GONE);
+        } else {
+            mRecyclerView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * 获取总价
+     * @param itemTotalPrice
+     */
+    @Override
+    public void onItemClick(double itemTotalPrice) {
+        /**
+         * 获取购物车所有商品的总价
+         */
+        double totalPrice = mAdapter.getmTotalPrice();
+        mTotalPrice.setText(String.valueOf(totalPrice));
     }
 }
