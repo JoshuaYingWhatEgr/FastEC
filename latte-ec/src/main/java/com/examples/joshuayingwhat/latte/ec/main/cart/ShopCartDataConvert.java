@@ -33,7 +33,8 @@ public class ShopCartDataConvert extends DataConverer {
                     .setField(ShopCartItemFields.DESC, desc)
                     .setField(ShopCartItemFields.COUNT, count)
                     .setField(ShopCartItemFields.PRICE, price)
-                    .setField(ShopCartItemFields.IS_SELECTED, false)
+                    .setField(ShopCartItemFields.IS_SELECTED, false)//标记选中按钮是否被点击了
+                    .setField(ShopCartItemFields.POSITION,i)
                     .setField(ShopCartItemFields.POSITION, i)
                     .build();
 
