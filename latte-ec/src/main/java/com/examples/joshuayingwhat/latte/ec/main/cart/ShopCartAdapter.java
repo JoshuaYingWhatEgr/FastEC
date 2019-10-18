@@ -6,6 +6,11 @@ import com.examples.joshuayingwhat.latte.ui.recycler.MultipleRecyclerAdapter;
 
 import java.util.List;
 
+/**
+ * 购物车数据
+ *
+ * @author joshuayingwhat
+ */
 public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
 
