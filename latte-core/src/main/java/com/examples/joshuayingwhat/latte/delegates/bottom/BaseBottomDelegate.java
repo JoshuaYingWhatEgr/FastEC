@@ -87,7 +87,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
     }
 
     @Override
-    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         final int size = ITEMS.size();
         for (int i = 0; i < size; i++) {
             LayoutInflater.from(getContext()).inflate(R.layout.bottom_item_icon_text_layout, bottomBar);
@@ -110,7 +110,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
 
         final SupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new SupportFragment[size]);
         //将每个模块的delegate放载到framelayout
-        loadMultipleRootFragment(R.id.bottom_bar_delegate_container, mIndexDelegate, delegateArray);
+        getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container, mIndexDelegate, delegateArray);
     }
 
     private void resetColor() {
@@ -133,7 +133,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         itemIcon.setTextColor(mClickedColor);
         final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
         itemTitle.setTextColor(mClickedColor);
-        showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
+        getSupportDelegate().showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
         mCurrentDelegate = tag;
     }
 }

@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,11 +18,12 @@ import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
 import com.examples.joshuayingwhat.latte.net.RestClient;
 import com.examples.joshuayingwhat.latte.net.callback.ISuccess;
-import com.examples.joshuayingwhat.latte.ui.recycler.MultipleItemEntity;
 import com.joanzapata.iconify.widget.IconTextView;
+import com.joshuayingwhat.latte_ui.ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -51,10 +51,12 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
     @BindView(R2.id.icon_shop_cart_select_all)
     IconTextView mIconSelectAll;
     @BindView(R2.id.tv_shop_cart_total_price)
-    AppCompatTextView mTotalPrice;
+    AppCompatTextView mTvTotalPrice;
     @BindView(R2.id.tv_shop_cart_pay)
     AppCompatTextView tvShopCartPay;
     private ShopCartAdapter mAdapter;
+
+    private double mTotalPrice;
 
 
     @Override
@@ -63,9 +65,10 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
     }
 
     @Override
-    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mIconSelectAll.setTag(0);
     }
+
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
@@ -82,6 +85,8 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
                         mRecyclerView.setLayoutManager(manager);
                         mAdapter = new ShopCartAdapter(data);
                         mRecyclerView.setAdapter(mAdapter);
+                        mTotalPrice = mAdapter.getmTotalPrice();
+                        mTvTotalPrice.setText(String.valueOf(mTotalPrice));
                     }
                 })
                 .build().get();
@@ -173,6 +178,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
 
     /**
      * 获取总价
+     *
      * @param itemTotalPrice
      */
     @Override
@@ -181,6 +187,37 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
          * 获取购物车所有商品的总价
          */
         double totalPrice = mAdapter.getmTotalPrice();
-        mTotalPrice.setText(String.valueOf(totalPrice));
+        mTvTotalPrice.setText(String.valueOf(totalPrice));
+    }
+
+    /**
+     * 结算
+     */
+    @OnClick(R2.id.tv_shop_cart_pay)
+    void onClickPay(View view) {
+
+    }
+
+    /**
+     * 创建订单和支付还没有关系
+     */
+    private void createOrder() {
+        final String orderUlr = "";
+        final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();
+        orderParams.put("userId", 123456);
+        orderParams.put("amout", "0.01");
+        orderParams.put("comment", "测试支付");
+        orderParams.put("type", 1);
+        orderParams.put("ordertype", 0);
+        //发起订单 将订单信息发送给服务器
+        RestClient.builder().url(orderUlr)
+                .params(orderParams)
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        //进行具体的支付
+
+                    }
+                }).build().post();
     }
 }

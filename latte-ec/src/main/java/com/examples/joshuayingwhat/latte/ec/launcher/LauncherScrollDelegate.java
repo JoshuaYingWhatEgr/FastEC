@@ -12,11 +12,11 @@ import com.examples.joshuayingwhat.latte.app.AccountManager;
 import com.examples.joshuayingwhat.latte.app.IUserCheck;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
-import com.examples.joshuayingwhat.latte.ui.launcher.ILauncherListener;
-import com.examples.joshuayingwhat.latte.ui.launcher.LauncherHolderCreator;
-import com.examples.joshuayingwhat.latte.ui.launcher.OnLauncherFinishTag;
-import com.examples.joshuayingwhat.latte.ui.launcher.ScrollLauncherTag;
 import com.examples.joshuayingwhat.latte.utils.storage.LattePreference;
+import com.joshuayingwhat.latte_ui.ui.launcher.ILauncherListener;
+import com.joshuayingwhat.latte_ui.ui.launcher.LauncherHolderCreator;
+import com.joshuayingwhat.latte_ui.ui.launcher.OnLauncherFinishTag;
+import com.joshuayingwhat.latte_ui.ui.launcher.ScrollLauncherTag;
 
 import java.util.ArrayList;
 
@@ -54,9 +54,10 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
     }
 
     @Override
-    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         initBanner();
     }
+
 
     @Override
     public void onItemClick(int position) {

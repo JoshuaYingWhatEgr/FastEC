@@ -10,11 +10,11 @@ import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.main.sort.SortDelegate;
 import com.examples.joshuayingwhat.latte.ec.main.sort.content.ContentDelegate;
-import com.examples.joshuayingwhat.latte.ui.recycler.ItemType;
 import com.examples.joshuayingwhat.latte.ui.recycler.MultipleFields;
-import com.examples.joshuayingwhat.latte.ui.recycler.MultipleItemEntity;
-import com.examples.joshuayingwhat.latte.ui.recycler.MultipleRecyclerAdapter;
-import com.examples.joshuayingwhat.latte.ui.recycler.MultipleViewHolder;
+import com.joshuayingwhat.latte_ui.ui.recycler.ItemType;
+import com.joshuayingwhat.latte_ui.ui.recycler.MultipleItemEntity;
+import com.joshuayingwhat.latte_ui.ui.recycler.MultipleRecyclerAdapter;
+import com.joshuayingwhat.latte_ui.ui.recycler.MultipleViewHolder;
 
 import java.util.List;
 

@@ -13,8 +13,8 @@ import com.examples.joshuayingwhat.latte.ec.launcher.LauncherDelegate;
 import com.examples.joshuayingwhat.latte.ec.main.EcBottomDelegate;
 import com.examples.joshuayingwhat.latte.ec.sign.ISignListener;
 import com.examples.joshuayingwhat.latte.ec.sign.SignInDelegate;
-import com.examples.joshuayingwhat.latte.ui.launcher.ILauncherListener;
-import com.examples.joshuayingwhat.latte.ui.launcher.OnLauncherFinishTag;
+import com.joshuayingwhat.latte_ui.ui.launcher.ILauncherListener;
+import com.joshuayingwhat.latte_ui.ui.launcher.OnLauncherFinishTag;
 
 import qiu.niorgai.StatusBarCompat;
 
@@ -24,7 +24,8 @@ import qiu.niorgai.StatusBarCompat;
 public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherListener {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
         final ActionBar actionBar = getActionBar();
         if (actionBar != null) {
@@ -60,11 +61,11 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         switch (tag) {
             case SINGED://已经登录了
                 Toast.makeText(this, "启动结束,用户已经登录了", Toast.LENGTH_SHORT).show();
-                startWithPop(new EcBottomDelegate());
+                getSupportDelegate().startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SINGED://没有登录
                 Toast.makeText(this, "启动结束,用户没登录", Toast.LENGTH_SHORT).show();
-                startWithPop(new SignInDelegate());
+                getSupportDelegate().startWithPop(new SignInDelegate());
                 break;
             default:
                 break;

@@ -13,12 +13,12 @@ import com.examples.joshuayingwhat.latte.app.IUserCheck;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
-import com.examples.joshuayingwhat.latte.ui.launcher.ILauncherListener;
-import com.examples.joshuayingwhat.latte.ui.launcher.OnLauncherFinishTag;
-import com.examples.joshuayingwhat.latte.ui.launcher.ScrollLauncherTag;
 import com.examples.joshuayingwhat.latte.utils.storage.LattePreference;
 import com.examples.joshuayingwhat.latte.utils.timer.BaseTimerTask;
 import com.examples.joshuayingwhat.latte.utils.timer.ITimerListener;
+import com.joshuayingwhat.latte_ui.ui.launcher.ILauncherListener;
+import com.joshuayingwhat.latte_ui.ui.launcher.OnLauncherFinishTag;
+import com.joshuayingwhat.latte_ui.ui.launcher.ScrollLauncherTag;
 
 
 import java.text.MessageFormat;
@@ -57,9 +57,10 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     }
 
     @Override
-    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         initTimer();
     }
+
 
     /**
      * 判断是否显示滑动启动页

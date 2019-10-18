@@ -22,9 +22,10 @@ public class GoodsDetailDelegate extends LatteDelegate {
     }
 
     @Override
-    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
     }
+
 
     public static GoodsDetailDelegate creator() {
         return new GoodsDetailDelegate();

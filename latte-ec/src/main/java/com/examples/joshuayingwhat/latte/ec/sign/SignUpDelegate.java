@@ -101,9 +101,10 @@ public class SignUpDelegate extends LatteDelegate {
     }
 
     @Override
-    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
     }
+
 
     @SuppressLint("InvalidR2Usage")
     @OnClick({R2.id.btn_sign_up, R2.id.tv_link_sign_in})

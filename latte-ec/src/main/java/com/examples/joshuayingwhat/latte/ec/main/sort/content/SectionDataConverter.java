@@ -3,8 +3,6 @@ package com.examples.joshuayingwhat.latte.ec.main.sort.content;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.examples.joshuayingwhat.latte.ui.recycler.DataConverer;
-import com.examples.joshuayingwhat.latte.ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
 import java.util.List;

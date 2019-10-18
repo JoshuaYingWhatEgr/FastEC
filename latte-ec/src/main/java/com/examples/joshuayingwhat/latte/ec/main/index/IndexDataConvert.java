@@ -2,10 +2,10 @@ package com.examples.joshuayingwhat.latte.ec.main.index;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.examples.joshuayingwhat.latte.ui.recycler.DataConverer;
-import com.examples.joshuayingwhat.latte.ui.recycler.ItemType;
-import com.examples.joshuayingwhat.latte.ui.recycler.MultipleItemEntity;
 import com.examples.joshuayingwhat.latte.ui.recycler.MultipleFields;
+import com.joshuayingwhat.latte_ui.ui.recycler.DataConverer;
+import com.joshuayingwhat.latte_ui.ui.recycler.ItemType;
+import com.joshuayingwhat.latte_ui.ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
 

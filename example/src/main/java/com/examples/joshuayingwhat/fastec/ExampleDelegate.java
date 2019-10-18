@@ -22,7 +22,7 @@ public class ExampleDelegate extends LatteDelegate {
     }
 
     @Override
-    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         test();
     }
 

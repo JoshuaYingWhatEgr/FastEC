@@ -15,7 +15,7 @@ import com.examples.joshuayingwhat.latte.net.RestClient;
 import com.examples.joshuayingwhat.latte.net.callback.IError;
 import com.examples.joshuayingwhat.latte.net.callback.IFailure;
 import com.examples.joshuayingwhat.latte.net.callback.ISuccess;
-import com.examples.joshuayingwhat.latte.ui.recycler.MultipleItemEntity;
+import com.joshuayingwhat.latte_ui.ui.recycler.MultipleItemEntity;
 
 import java.util.List;
 
@@ -35,6 +35,11 @@ public class VerticalListDelegate extends LatteDelegate {
         return R.layout.delegate_vertical_list;
     }
 
+    @Override
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+        initRecyclerView();
+    }
+
     private void initRecyclerView() {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
@@ -42,10 +47,7 @@ public class VerticalListDelegate extends LatteDelegate {
         mRecyclerView.setAnimation(null);
     }
 
-    @Override
-    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
-        initRecyclerView();
-    }
+
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {

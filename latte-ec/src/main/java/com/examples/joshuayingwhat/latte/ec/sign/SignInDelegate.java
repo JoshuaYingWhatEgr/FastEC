@@ -83,9 +83,10 @@ public class SignInDelegate extends LatteDelegate {
     }
 
     @Override
-    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
     }
+
 
     @SuppressLint("InvalidR2Usage")
     @OnClick({R2.id.btn_sign_in, R2.id.tv_link_sign_up, R2.id.icon_sign_in_wechat})
@@ -93,12 +94,12 @@ public class SignInDelegate extends LatteDelegate {
         int id = view.getId();//登录
         if (id == R.id.btn_sign_in) {
             if (checkForm()) {
-                startWithPop(new EcBottomDelegate());
+                getSupportDelegate().startWithPop(new EcBottomDelegate());
             }
 
         } else if (id == R.id.tv_link_sign_up) {//还没有注册 去注册
 
-            startWithPop(new SignUpDelegate());
+            getSupportDelegate().startWithPop(new SignUpDelegate());
 
         } else if (id == R.id.icon_sign_in_wechat) {//微信登录
             LatteWeChat.getInstance().onSignInSuccess(new IWeChatSignInCallBack() {

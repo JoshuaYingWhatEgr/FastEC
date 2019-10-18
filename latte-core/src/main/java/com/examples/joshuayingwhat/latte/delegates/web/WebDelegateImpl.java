@@ -43,11 +43,12 @@ public class WebDelegateImpl extends WebDelegate {
     }
 
     @Override
-    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         if (getUrl() != null) {
             Router.getInstance().loadPage(this, getUrl());
         }
     }
+
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override

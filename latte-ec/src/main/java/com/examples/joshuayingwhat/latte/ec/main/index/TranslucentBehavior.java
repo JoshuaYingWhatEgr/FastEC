@@ -9,7 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.examples.joshuayingwhat.latte.ec.R;
-import com.examples.joshuayingwhat.latte.ui.recycler.RgbValue;
+import com.joshuayingwhat.latte_ui.ui.recycler.RgbValue;
 
 /**
  * @author joshuayingwhat

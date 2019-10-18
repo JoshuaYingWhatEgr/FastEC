@@ -26,9 +26,10 @@ public class DiscoverDelegate extends BottomItemDelegate implements IPageLoadLis
     }
 
     @Override
-    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
     }
+
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {

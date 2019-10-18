@@ -22,12 +22,8 @@ public class SortDelegate extends BottomItemDelegate {
     }
 
     @Override
-    public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
-        final VerticalListDelegate listDelegate = new VerticalListDelegate();
-        final ContentDelegate contentDelegate = new ContentDelegate();
-        loadRootFragment(R.id.vertical_list_container, listDelegate);
-        //设置右侧一个分类显示，默认选中第一个类别的内容
-        getSupportDelegate().loadRootFragment(R.id.sort_content_container, ContentDelegate.newInstance(1));
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+
     }
 
     /**
@@ -38,5 +34,10 @@ public class SortDelegate extends BottomItemDelegate {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
+        final VerticalListDelegate listDelegate = new VerticalListDelegate();
+//        final ContentDelegate contentDelegate = new ContentDelegate();
+        getSupportDelegate().loadRootFragment(R.id.vertical_list_container, listDelegate);
+        //设置右侧一个分类显示，默认选中第一个类别的内容
+        getSupportDelegate().loadRootFragment(R.id.sort_content_container, ContentDelegate.newInstance(1));
     }
 }
