@@ -26,7 +26,6 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onCreate(savedInstanceState);
         final ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.hide();

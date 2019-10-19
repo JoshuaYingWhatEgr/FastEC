@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.examples.joshuayingwhat.latte.delegates.bottom.BottomItemDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
+import com.examples.joshuayingwhat.latte.ec.pay.FastPay;
 import com.examples.joshuayingwhat.latte.net.RestClient;
 import com.examples.joshuayingwhat.latte.net.callback.ISuccess;
 import com.joanzapata.iconify.widget.IconTextView;
@@ -74,24 +75,24 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         //请求购物车数据
-        RestClient.builder().url("shop_cart.php")
-                .loader(getContext())
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        final ArrayList<MultipleItemEntity> data =
-                                new ShopCartDataConvert().setJsonData(response).convert();
-                        final LinearLayoutManager manager = new LinearLayoutManager(getContext());
-                        mRecyclerView.setLayoutManager(manager);
-                        mAdapter = new ShopCartAdapter(data);
-                        mRecyclerView.setAdapter(mAdapter);
-                        mTotalPrice = mAdapter.getmTotalPrice();
-                        mTvTotalPrice.setText(String.valueOf(mTotalPrice));
-                    }
-                })
-                .build().get();
-
-        mAdapter.setmCartItemListener(this);
+//        RestClient.builder().url("shop_cart.php")
+//                .loader(getContext())
+//                .success(new ISuccess() {
+//                    @Override
+//                    public void onSuccess(String response) {
+//                        final ArrayList<MultipleItemEntity> data =
+//                                new ShopCartDataConvert().setJsonData(response).convert();
+//                        final LinearLayoutManager manager = new LinearLayoutManager(getContext());
+//                        mRecyclerView.setLayoutManager(manager);
+//                        mAdapter = new ShopCartAdapter(data);
+//                        mRecyclerView.setAdapter(mAdapter);
+//                        mTotalPrice = mAdapter.getmTotalPrice();
+//                        mTvTotalPrice.setText(String.valueOf(mTotalPrice));
+//                    }
+//                })
+//                .build().get();
+//
+//        mAdapter.setmCartItemListener(this);
 
         checkItemCount();
     }
@@ -159,21 +160,21 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
      * 检查购物车是否有数据
      */
     private void checkItemCount() {
-        final int count = mAdapter.getItemCount();
-        if (count == 0) {
-            final View stubView = mStubNoItem.inflate();
-            final AppCompatTextView tvToBuy = stubView.findViewById(R.id.tv_stub_to_buy);
-            tvToBuy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(getContext(), "您该购物了", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            mRecyclerView.setVisibility(View.GONE);
-        } else {
-            mRecyclerView.setVisibility(View.VISIBLE);
-        }
+//        final int count = mAdapter.getItemCount();
+//        if (count == 0) {
+//            final View stubView = mStubNoItem.inflate();
+//            final AppCompatTextView tvToBuy = stubView.findViewById(R.id.tv_stub_to_buy);
+//            tvToBuy.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Toast.makeText(getContext(), "您该购物了", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//
+//            mRecyclerView.setVisibility(View.GONE);
+//        } else {
+//            mRecyclerView.setVisibility(View.VISIBLE);
+//        }
     }
 
     /**
@@ -195,7 +196,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
      */
     @OnClick(R2.id.tv_shop_cart_pay)
     void onClickPay(View view) {
-
+        FastPay.creater(this).beginPayDialog();
     }
 
     /**
