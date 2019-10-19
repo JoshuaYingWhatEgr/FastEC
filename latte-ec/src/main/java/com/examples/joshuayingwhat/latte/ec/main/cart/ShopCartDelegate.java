@@ -5,18 +5,18 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSON;
 import com.examples.joshuayingwhat.latte.delegates.bottom.BottomItemDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
 import com.examples.joshuayingwhat.latte.ec.pay.FastPay;
+import com.examples.joshuayingwhat.latte.ec.pay.IAlPayResutlListener;
 import com.examples.joshuayingwhat.latte.net.RestClient;
 import com.examples.joshuayingwhat.latte.net.callback.ISuccess;
 import com.joanzapata.iconify.widget.IconTextView;
@@ -34,7 +34,7 @@ import butterknife.OnClick;
  *
  * @author joshuayingwhat
  */
-public class ShopCartDelegate extends BottomItemDelegate implements ICartItemListener {
+public class ShopCartDelegate extends BottomItemDelegate implements ICartItemListener, IAlPayResutlListener {
 
     //购物车数量标记
     private int mCurrentCount = 0;
@@ -196,7 +196,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
      */
     @OnClick(R2.id.tv_shop_cart_pay)
     void onClickPay(View view) {
-        FastPay.creater(this).beginPayDialog();
+        createOrder();
     }
 
     /**
@@ -206,7 +206,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
         final String orderUlr = "";
         final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();
         orderParams.put("userId", 123456);
-        orderParams.put("amout", "0.01");
+        orderParams.put("amout", "0.01");//这里是商品金总额
         orderParams.put("comment", "测试支付");
         orderParams.put("type", 1);
         orderParams.put("ordertype", 0);
@@ -217,8 +217,37 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
                     @Override
                     public void onSuccess(String response) {
                         //进行具体的支付
-
+                        final int orderId = JSON.parseObject(response).getInteger("result");
+                        FastPay.creater(ShopCartDelegate.this).
+                                setPayResultListener(ShopCartDelegate.this).
+                                setOrderId(orderId)
+                                .beginPayDialog();
                     }
                 }).build().post();
+    }
+
+    @Override
+    public void onPaySuccess() {
+
+    }
+
+    @Override
+    public void onPaying() {
+
+    }
+
+    @Override
+    public void onPayFail() {
+
+    }
+
+    @Override
+    public void onPayCancle() {
+
+    }
+
+    @Override
+    public void onPayConnectError() {
+
     }
 }

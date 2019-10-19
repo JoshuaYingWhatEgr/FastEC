@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name="com.examples.joshuayingwhat.latte.wechat.templte.WXEntryTemplate"
+            android:name=".wxapi.WXEntryActivity"
             android:exported="true"
             android:label="微信回调"
             android:launchMode="singleTask"
@@ -33,7 +33,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:label="微信回调"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Translucent"/>
     </application>
+
 
     <uses-permission android:name="android.permission.INTERNET" />
 
