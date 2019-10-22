@@ -75,7 +75,7 @@ public class FastPay implements View.OnClickListener {
      *
      * @param order
      */
-    public final void alPay(int order) {
+    private void alPay(int order) {
         //签名串 获取签名信息
         final String singUrl = "自己的服务器"+getmOrderId();
         //获取了签名支付串后解析

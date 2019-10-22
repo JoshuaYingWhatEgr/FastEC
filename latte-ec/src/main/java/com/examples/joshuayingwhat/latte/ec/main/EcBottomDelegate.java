@@ -9,6 +9,7 @@ import com.examples.joshuayingwhat.latte.delegates.bottom.ItemBuilder;
 import com.examples.joshuayingwhat.latte.ec.main.cart.ShopCartDelegate;
 import com.examples.joshuayingwhat.latte.ec.main.discover.DiscoverDelegate;
 import com.examples.joshuayingwhat.latte.ec.main.index.IndexDelegate;
+import com.examples.joshuayingwhat.latte.ec.main.personal.PersonalDelegate;
 import com.examples.joshuayingwhat.latte.ec.main.sort.SortDelegate;
 
 import java.util.LinkedHashMap;
@@ -21,7 +22,7 @@ public class EcBottomDelegate extends BaseBottomDelegate {
         items.put(new BottomTableBean("{fa-sort}", "分类"), new SortDelegate());
         items.put(new BottomTableBean("{fa-compass}", "发现"), new DiscoverDelegate());
         items.put(new BottomTableBean("{fa-shopping-cart}", "购物车"), new ShopCartDelegate());
-        items.put(new BottomTableBean("{fa-user}", "我的"), new IndexDelegate());
+        items.put(new BottomTableBean("{fa-user}", "我的"), new PersonalDelegate());
         return builder.addItems(items).build();
     }
 

@@ -220,8 +220,8 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
                         final int orderId = JSON.parseObject(response).getInteger("result");
                         FastPay.creater(ShopCartDelegate.this).
                                 setPayResultListener(ShopCartDelegate.this).
-                                setOrderId(orderId)
-                                .beginPayDialog();
+                                setOrderId(orderId).
+                                beginPayDialog();
                     }
                 }).build().post();
     }
