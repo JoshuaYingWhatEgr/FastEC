@@ -14,9 +14,6 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.examples.joshuayingwhat.latte.R;
 import com.joshuayingwhat.latte_ui.ui.banner.BannerCreator;
-import com.joshuayingwhat.latte_ui.ui.recycler.DataConverer;
-import com.joshuayingwhat.latte_ui.ui.recycler.ItemType;
-import com.joshuayingwhat.latte_ui.ui.recycler.MultipleViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,19 +80,19 @@ public class MultipleRecyclerAdapter extends
         final ArrayList<String> bannerImages;
         switch (holder.getItemViewType()) {
             case ItemType.TEXT:
-                text = item.getFields(com.examples.joshuayingwhat.latte.ui.recycler.MultipleFields.TEXT);
+                text = item.getFields(MultipleFields.TEXT);
                 holder.setText(R.id.text_single, text);
                 break;
             case ItemType.IMAGE:
-                imageUrl = item.getFields(com.examples.joshuayingwhat.latte.ui.recycler.MultipleFields.IMAGE_URL);
+                imageUrl = item.getFields(MultipleFields.IMAGE_URL);
                 Glide.with(mContext)
                         .load(imageUrl)
                         .apply(REQUEST_OPTIONS)
                         .into((ImageView) holder.getView(R.id.img_single));
                 break;
             case ItemType.TEXT_IMAGE:
-                text = item.getFields(com.examples.joshuayingwhat.latte.ui.recycler.MultipleFields.TEXT);
-                imageUrl = item.getFields(com.examples.joshuayingwhat.latte.ui.recycler.MultipleFields.IMAGE_URL);
+                text = item.getFields(MultipleFields.TEXT);
+                imageUrl = item.getFields(MultipleFields.IMAGE_URL);
                 holder.setText(R.id.tv_multiple, text);
                 Glide.with(mContext)
                         .load(imageUrl)
@@ -104,7 +101,7 @@ public class MultipleRecyclerAdapter extends
                 break;
             case ItemType.BANNER:
                 if (!mIsInitBanner) {
-                    bannerImages = item.getFields(com.examples.joshuayingwhat.latte.ui.recycler.MultipleFields.BANNERS);
+                    bannerImages = item.getFields(MultipleFields.BANNERS);
                     final ConvenientBanner<String> convenientBanner = holder.getView(R.id.banner_recycler_item);
                     BannerCreator.setDefalut(convenientBanner, bannerImages, this);
                     mIsInitBanner = true;
@@ -117,7 +114,7 @@ public class MultipleRecyclerAdapter extends
 
     @Override
     public int getSpanSize(GridLayoutManager gridLayoutManager, int i) {
-        return getData().get(i).getFields(com.examples.joshuayingwhat.latte.ui.recycler.MultipleFields.SPAN_SIZE);
+        return getData().get(i).getFields(MultipleFields.SPAN_SIZE);
     }
 
     /**

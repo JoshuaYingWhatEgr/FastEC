@@ -12,7 +12,7 @@ public class MultipleItemEntityBuilder {
     }
 
     public MultipleItemEntityBuilder setItemType(int itemType) {
-        FIELDS.put(com.examples.joshuayingwhat.latte.ui.recycler.MultipleFields.ITEM_TYPE, itemType);
+        FIELDS.put(MultipleFields.ITEM_TYPE, itemType);
         return this;
     }
 

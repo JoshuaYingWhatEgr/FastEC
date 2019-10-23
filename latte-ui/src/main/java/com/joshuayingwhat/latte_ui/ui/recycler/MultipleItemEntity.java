@@ -27,7 +27,7 @@ public class MultipleItemEntity implements MultiItemEntity {
     @Override
     public int getItemType() {
 
-        return (int) FIELDS_REFERENCE.get().get(com.examples.joshuayingwhat.latte.ui.recycler.MultipleFields.ITEM_TYPE);
+        return (int) FIELDS_REFERENCE.get().get(MultipleFields.ITEM_TYPE);
     }
 
     public final <T> T getFields(Object key) {

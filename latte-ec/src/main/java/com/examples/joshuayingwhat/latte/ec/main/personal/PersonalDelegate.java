@@ -15,12 +15,14 @@ import com.examples.joshuayingwhat.latte.ec.R2;
 import com.examples.joshuayingwhat.latte.ec.main.personal.list.ListAdapter;
 import com.examples.joshuayingwhat.latte.ec.main.personal.list.ListBean;
 import com.examples.joshuayingwhat.latte.ec.main.personal.list.ListItemType;
+import com.examples.joshuayingwhat.latte.ec.main.personal.order.OrderListDelegate;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -49,9 +51,25 @@ public class PersonalDelegate extends BottomItemDelegate {
     @BindView(R2.id.rv_personal_setting)
     RecyclerView mRvSettings;
 
+    public static final String ORDER_TYPE = "order_type";
+
+    private Bundle args = null;
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_personal;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        args = new Bundle();
+    }
+
+    private void startOrderListByType() {
+        final OrderListDelegate delegate = new OrderListDelegate();
+        delegate.setArguments(args);
+        getParentDelegate().getSupportDelegate().start(delegate);
     }
 
     @Override
@@ -74,9 +92,14 @@ public class PersonalDelegate extends BottomItemDelegate {
         data.add(address);
         data.add(system);
 
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        final LinearLayoutManager manager = new LinearLayoutManager(getContext());
         mRvSettings.setLayoutManager(manager);
         final ListAdapter adapter = new ListAdapter(data);
         mRvSettings.setAdapter(adapter);
+    }
+
+    @OnClick({R2.id.tv_all_order})
+    void allListClick() {
+        startOrderListByType();
     }
 }

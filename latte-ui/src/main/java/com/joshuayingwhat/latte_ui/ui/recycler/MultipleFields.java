@@ -1,4 +1,4 @@
-package com.examples.joshuayingwhat.latte.ui.recycler;
+package com.joshuayingwhat.latte_ui.ui.recycler;
 
 public enum MultipleFields {
     ITEM_TYPE,
@@ -8,5 +8,6 @@ public enum MultipleFields {
     SPAN_SIZE,
     ID,
     NAME,
-    TAG
+    TAG,
+    TITLE
 }
