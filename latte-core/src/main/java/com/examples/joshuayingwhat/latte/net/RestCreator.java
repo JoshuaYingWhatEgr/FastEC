@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RestCreator {
@@ -34,6 +35,7 @@ public class RestCreator {
                 .baseUrl(BASE_URL)
                 .client(OkHttpHolder.OK_HTTP_CLIENT)
                 .addConverterFactory(ScalarsConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 

@@ -15,9 +15,9 @@ import com.examples.joshuayingwhat.latte.delegates.bottom.BottomItemDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
 import com.examples.joshuayingwhat.latte.ec.main.EcBottomDelegate;
-import com.examples.joshuayingwhat.latte.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.joshuayingwhat.latte_ui.ui.recycler.BaseDecoration;
+import com.joshuayingwhat.latte_ui.ui.refresh.RefreshHandler;
 
 import butterknife.BindView;
 
@@ -75,7 +75,7 @@ public class IndexDelegate extends BottomItemDelegate {
         super.onLazyInitView(savedInstanceState);
         initRefteshLayout();
         initRecyclerView();
-        //mRefreshHandler.firstPage("index.php");
+        mRefreshHandler.firstPage("index.php");
     }
 
     @Override

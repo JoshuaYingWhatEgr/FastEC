@@ -1,5 +1,7 @@
 package com.examples.joshuayingwhat.latte.net.callback;
 
+import android.util.Log;
+
 import com.examples.joshuayingwhat.latte.ui.LatteLoader;
 import com.examples.joshuayingwhat.latte.ui.LoaderStyle;
 
@@ -56,7 +58,7 @@ public class RequestCallBacks implements Callback<String> {
         stopLoading();
     }
 
-    public void stopLoading() {
+    private void stopLoading() {
         if (LOADER_STYLE != null) {
             LatteLoader.stopLoading();
         }

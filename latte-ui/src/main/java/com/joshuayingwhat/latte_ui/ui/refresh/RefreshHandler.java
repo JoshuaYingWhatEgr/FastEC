@@ -1,4 +1,4 @@
-package com.examples.joshuayingwhat.latte.ui.refresh;
+package com.joshuayingwhat.latte_ui.ui.refresh;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -52,13 +52,12 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
         REFRESH_LAYOUT.setRefreshing(true);
 
         //进行一些网络请求操作
-
+        firstPage("index.php");
     }
 
     public void firstPage(String url) {
         BEAN.setDelayed(1000);
         RestClient.builder().url(url)
-                .params("", "")
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
