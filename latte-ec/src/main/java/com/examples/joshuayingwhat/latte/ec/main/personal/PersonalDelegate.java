@@ -16,6 +16,7 @@ import com.examples.joshuayingwhat.latte.ec.main.personal.list.ListAdapter;
 import com.examples.joshuayingwhat.latte.ec.main.personal.list.ListBean;
 import com.examples.joshuayingwhat.latte.ec.main.personal.list.ListItemType;
 import com.examples.joshuayingwhat.latte.ec.main.personal.order.OrderListDelegate;
+import com.examples.joshuayingwhat.latte.ec.main.personal.profile.UserProfileDelegate;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
@@ -101,5 +102,14 @@ public class PersonalDelegate extends BottomItemDelegate {
     @OnClick({R2.id.tv_all_order})
     void allListClick() {
         startOrderListByType();
+    }
+
+    /**
+     * 头像的点击事件
+     * @param view
+     */
+    @OnClick({R2.id.img_user_avatar})
+    void onClickAvatar(View view) {
+        getParentDelegate().getSupportDelegate().start(new UserProfileDelegate());
     }
 }

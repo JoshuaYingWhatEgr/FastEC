@@ -9,7 +9,7 @@ public class ListBean implements MultiItemEntity {
 
     private int mItemType = 0;
 
-    private String mImageUrl = null;
+    public String mImageUrl = null;
 
     private String mText = null;
 

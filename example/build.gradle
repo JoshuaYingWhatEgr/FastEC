@@ -8,6 +8,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -24,6 +25,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:multidex:1.0.3'
     implementation project(':latte-ec')
     annotationProcessor project(':latte-compiler')
     implementation 'com.facebook.stetho:stetho:1.5.0'
