@@ -123,6 +123,10 @@ public class RestClient {
         request(HttpMethod.GET);
     }
 
+    public final void upLoad() {
+        request(HttpMethod.UPLOAD);
+    }
+
     public final void post() {
         if (REQUEST_BODY == null) {
             request(HttpMethod.POST);
@@ -150,6 +154,6 @@ public class RestClient {
     }
 
     public final void download() {
-        new DownloadHandler(URL,REQUEST,ERROR,FAILURE,SUCCESS,DOWNLOAD_DIR,EXTENSION,NAME).handlerDownlaod();
+        new DownloadHandler(URL, REQUEST, ERROR, FAILURE, SUCCESS, DOWNLOAD_DIR, EXTENSION, NAME).handlerDownlaod();
     }
 }

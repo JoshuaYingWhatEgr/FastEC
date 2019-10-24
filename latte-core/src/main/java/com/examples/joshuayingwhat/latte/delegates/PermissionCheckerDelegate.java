@@ -2,13 +2,24 @@ package com.examples.joshuayingwhat.latte.delegates;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.examples.joshuayingwhat.latte.app.Latte;
+import com.examples.joshuayingwhat.latte.camera.CamearImageBean;
 import com.examples.joshuayingwhat.latte.camera.LatteCamer;
+import com.examples.joshuayingwhat.latte.camera.RequestCode;
+import com.examples.joshuayingwhat.latte.utils.callback.CallBackManager;
+import com.examples.joshuayingwhat.latte.utils.callback.CallBackType;
+import com.examples.joshuayingwhat.latte.utils.callback.IGlobalCallBack;
+import com.yalantis.ucrop.UCrop;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
@@ -82,6 +93,41 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
     }
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case RequestCode.TAKE_PHOTO:
+                    final Uri resultUri = CamearImageBean.getInstance().getPath();
+                    UCrop.of(resultUri, resultUri)
+                            .withMaxResultSize(400, 400).start(getContext(), this);
+                    break;
+                case RequestCode.PICK_PHOTO:
+                    if (data != null) {
+                        final Uri pickPath = data.getData();
+                        final String pickCropPath = LatteCamer.createCropFile().getPath();
+                        UCrop.of(pickPath, Uri.parse(pickCropPath))
+                                .withMaxResultSize(400, 400).start(getContext(), this);
+                    }
+                    break;
+                case RequestCode.CROP_PHOTO:
+                    final Uri cropUri = UCrop.getOutput(data);
+                    //拿到剪裁后的数据进行处理
+                    final IGlobalCallBack<Uri> callBack = CallBackManager.getInstance()
+                            .getCallBack(CallBackType.ON_CROP);
+                    if (callBack != null) {
+                        callBack.executeCallBack(cropUri);
+                    }
+                    break;
+                case RequestCode.CROP_ERROR:
+                    Toast.makeText(getContext(),"剪裁出错",Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }
 
 

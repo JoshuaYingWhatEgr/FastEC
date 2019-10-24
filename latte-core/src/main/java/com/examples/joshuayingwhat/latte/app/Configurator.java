@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import androidx.annotation.NonNull;
 
+import com.blankj.utilcode.util.Utils;
 import com.examples.joshuayingwhat.latte.delegates.web.event.Event;
 import com.examples.joshuayingwhat.latte.delegates.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.WeakHashMap;
 
 import okhttp3.Interceptor;
+import okhttp3.internal.Util;
 
 /**
  * 配置文件的存储和获取
@@ -54,6 +56,7 @@ public class Configurator {
     public final void configure() {
         initIcons();
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), true);
+        Utils.init(Latte.getContext());
     }
 
     public final Configurator withApiHost(String host) {

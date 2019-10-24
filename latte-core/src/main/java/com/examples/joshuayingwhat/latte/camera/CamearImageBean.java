@@ -14,7 +14,7 @@ public class CamearImageBean  {
         private static final CamearImageBean INSTANCE = new CamearImageBean();
     }
 
-    static CamearImageBean getInstance() {
+    public static CamearImageBean getInstance() {
         return Holder.INSTANCE;
     }
 
