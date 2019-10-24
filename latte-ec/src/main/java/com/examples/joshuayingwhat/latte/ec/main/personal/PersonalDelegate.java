@@ -18,6 +18,7 @@ import com.examples.joshuayingwhat.latte.ec.main.personal.list.ListBean;
 import com.examples.joshuayingwhat.latte.ec.main.personal.list.ListItemType;
 import com.examples.joshuayingwhat.latte.ec.main.personal.order.OrderListDelegate;
 import com.examples.joshuayingwhat.latte.ec.main.personal.profile.UserProfileDelegate;
+import com.examples.joshuayingwhat.latte.ec.main.personal.settings.SettingsDelegate;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
@@ -87,6 +88,7 @@ public class PersonalDelegate extends BottomItemDelegate {
         ListBean system = new ListBean.Builder()
                 .setmItemType(ListItemType.ITEM_NORAL)
                 .setmId(2)
+                .setmDelegate(new SettingsDelegate())
                 .setmText("系统设置")
                 .build();
 

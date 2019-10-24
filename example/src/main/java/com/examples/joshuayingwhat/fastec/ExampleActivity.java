@@ -13,6 +13,9 @@ import com.examples.joshuayingwhat.latte.ec.launcher.LauncherDelegate;
 import com.examples.joshuayingwhat.latte.ec.main.EcBottomDelegate;
 import com.examples.joshuayingwhat.latte.ec.sign.ISignListener;
 import com.examples.joshuayingwhat.latte.ec.sign.SignInDelegate;
+import com.examples.joshuayingwhat.latte.utils.callback.CallBackManager;
+import com.examples.joshuayingwhat.latte.utils.callback.CallBackType;
+import com.examples.joshuayingwhat.latte.utils.callback.IGlobalCallBack;
 import com.joshuayingwhat.latte_ui.ui.launcher.ILauncherListener;
 import com.joshuayingwhat.latte_ui.ui.launcher.OnLauncherFinishTag;
 
@@ -32,7 +35,25 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
             actionBar.hide();
         }
         Latte.getConfigurator().withActivity(this);
-        StatusBarCompat.translucentStatusBar(this,true);
+        StatusBarCompat.translucentStatusBar(this, true);
+
+        CallBackManager.getInstance().addCallBack(CallBackType.TAG_OPEN_PUSH, new IGlobalCallBack() {
+            @Override
+            public void executeCallBack(@Nullable Object args) {
+                if (JPushInterface.isPushStopped(Latte.getContext())) {
+                    //开启极光推送
+                    JPushInterface.setDebugMode(true);
+                    JPushInterface.init(ExampleActivity.this);
+                }
+            }
+        }).addCallBack(CallBackType.TAG_CLOSE_PUSH, new IGlobalCallBack() {
+            @Override
+            public void executeCallBack(@Nullable Object args) {
+                    if(!JPushInterface.isPushStopped(Latte.getContext())) {
+                        JPushInterface.stopPush(Latte.getContext());
+                    }
+            }
+        });
     }
 
     @Override

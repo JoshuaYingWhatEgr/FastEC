@@ -4,4 +4,5 @@ public class ListItemType {
 
     public static final int ITEM_NORAL = 20;
     public static final int ITEM_AVATAR = 21;
+    public static final int ITEM_SWITCH = 22;
 }
