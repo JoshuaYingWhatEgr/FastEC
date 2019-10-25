@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -78,7 +77,7 @@
         android:padding="10dp"
         tools:ignore="HardcodedText,RtlHardcoded"/>
 
-    <com.wuchao.latte.ui.widget.AutoPhotoLayout
+    <com.joshuayingwhat.latte_ui.ui.widget.AutoPhotoLayout
         android:id="@+id/custom_auto_photo_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
