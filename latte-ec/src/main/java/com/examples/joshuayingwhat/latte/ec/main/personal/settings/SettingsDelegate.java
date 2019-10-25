@@ -45,6 +45,7 @@ public class SettingsDelegate extends LatteDelegate {
                 .setmId(1)
                 .setmDelegate(new AddressDelegate())
                 .setmOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @SuppressWarnings("unchecked")
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if(isChecked) {

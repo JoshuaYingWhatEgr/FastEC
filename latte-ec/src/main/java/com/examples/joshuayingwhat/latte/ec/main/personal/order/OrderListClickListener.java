@@ -1,34 +1,22 @@
-package com.examples.joshuayingwhat.latte.ec.main.personal.settings;
+package com.examples.joshuayingwhat.latte.ec.main.personal.order;
 
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
-import com.examples.joshuayingwhat.latte.ec.main.personal.list.ListBean;
 
-public class SettingsClickListener extends SimpleClickListener {
+public class OrderListClickListener extends SimpleClickListener {
 
     private final LatteDelegate DELEGATE;
 
-    SettingsClickListener(LatteDelegate delegate) {
+    public OrderListClickListener(LatteDelegate delegate) {
         this.DELEGATE = delegate;
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        final ListBean bean = (ListBean) baseQuickAdapter.getData().get(position);
-        int id = bean.getmId();
-        switch (id) {
-            case 1:
-                //设置消息推送的开关
-                break;
-            case 2:
-                DELEGATE.getSupportDelegate().start(bean.getmDelegate());
-                break;
-            default:
-                break;
-        }
+        DELEGATE.getSupportDelegate().start(new OrderCommentDelegate());
     }
 
     @Override
