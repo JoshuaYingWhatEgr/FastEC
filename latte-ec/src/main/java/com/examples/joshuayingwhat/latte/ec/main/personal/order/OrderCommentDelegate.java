@@ -4,6 +4,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -63,7 +65,8 @@ public class OrderCommentDelegate extends LatteDelegate {
 
     @OnClick(R2.id.top_tv_comment_commit)
     void onClickSubmit() {
-
+        int starCount = mStarLayout.getStarCount();
+        Toast.makeText(getContext(), "评分："+starCount, Toast.LENGTH_SHORT).show();
     }
 
 }
