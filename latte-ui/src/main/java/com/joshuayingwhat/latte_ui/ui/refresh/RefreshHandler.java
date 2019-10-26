@@ -95,6 +95,10 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
         paging("refresh.php?index=");
     }
 
+    /***
+     * 设置分页
+     * @param url
+     */
     private void paging(String url) {
         final int pageSize = BEAN.getPageSize();
         final int current = BEAN.getCurrentCount();

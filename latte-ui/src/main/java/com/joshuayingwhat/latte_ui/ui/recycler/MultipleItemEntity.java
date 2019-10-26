@@ -1,7 +1,6 @@
 package com.joshuayingwhat.latte_ui.ui.recycler;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.joshuayingwhat.latte_ui.ui.recycler.MultipleItemEntityBuilder;
 
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;

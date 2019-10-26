@@ -16,6 +16,7 @@ import com.examples.joshuayingwhat.latte.delegates.bottom.BottomItemDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
 import com.examples.joshuayingwhat.latte.ec.main.EcBottomDelegate;
+import com.examples.joshuayingwhat.latte.ec.main.index.search.SearchDelegate;
 import com.examples.joshuayingwhat.latte.utils.callback.CallBackManager;
 import com.examples.joshuayingwhat.latte.utils.callback.CallBackType;
 import com.examples.joshuayingwhat.latte.utils.callback.IGlobalCallBack;
@@ -29,7 +30,7 @@ import butterknife.OnClick;
 /**
  * 这里是主页界面
  */
-public class IndexDelegate extends BottomItemDelegate {
+public class IndexDelegate extends BottomItemDelegate implements View.OnFocusChangeListener {
     @BindView(R2.id.rv_index)
     RecyclerView mRecycler;
     @BindView(R2.id.srl_index)
@@ -99,11 +100,20 @@ public class IndexDelegate extends BottomItemDelegate {
                 Toast.makeText(getContext(), "扫描结果:" + args, Toast.LENGTH_SHORT).show();
             }
         });
+        mSearchView.setOnFocusChangeListener(this);
     }
 
     //二维码扫描
     @OnClick({R2.id.icon_index_scan})
     void onClickScanQrCode() {
         startScanWithCheck(this.getParentDelegate());
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+            //已经有焦点
+            getParentDelegate().getSupportDelegate().start(new SearchDelegate());
+        }
     }
 }

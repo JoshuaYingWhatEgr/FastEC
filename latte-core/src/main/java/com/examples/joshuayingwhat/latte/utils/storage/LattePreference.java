@@ -59,6 +59,7 @@ public final class LattePreference {
 
     /**
      * 判断是否是第一次进入我们的app
+     *
      * @param key
      * @param flag
      */
@@ -71,6 +72,7 @@ public final class LattePreference {
 
     /**
      * 获取是否是第一次进入app的标记
+     *
      * @param key
      * @return
      */
