@@ -106,4 +106,9 @@ dependencies {
     api 'com.blankj:utilcodex:1.25.9'
     //二维码
     compile 'me.dm7.barcodescanner:zbar:1.9.8'
+    //View动画依赖
+    api 'com.nineoldandroids:library:2.4.0'
+    api 'com.daimajia.easing:library:2.1@aar'
+    api 'com.daimajia.androidanimations:library:2.3@aar'
+    api "com.google.auto.value:auto-value-annotations:1.6"
 }

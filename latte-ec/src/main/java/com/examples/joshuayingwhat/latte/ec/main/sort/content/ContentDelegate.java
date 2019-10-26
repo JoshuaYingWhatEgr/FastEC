@@ -86,6 +86,6 @@ public class ContentDelegate extends LatteDelegate {
         final StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(manager);
-        //initData();
+        initData();
     }
 }
