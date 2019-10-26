@@ -12,7 +12,6 @@ import com.examples.joshuayingwhat.latte.net.callback.IFailure;
 import com.examples.joshuayingwhat.latte.net.callback.ISuccess;
 import com.joshuayingwhat.latte_ui.ui.recycler.DataConverer;
 import com.joshuayingwhat.latte_ui.ui.recycler.MultipleRecyclerAdapter;
-import com.joshuayingwhat.latte_ui.ui.refresh.PagingBean;
 
 /**
  * 刷新助手
@@ -93,6 +92,31 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
 
     @Override
     public void onLoadMoreRequested() {
+        paging("refresh.php?index=");
+    }
 
+    private void paging(String url) {
+        final int pageSize = BEAN.getPageSize();
+        final int current = BEAN.getCurrentCount();
+        final int totla = BEAN.getTotle();
+        //当前的页码数
+        final int inde = BEAN.getPageIndex();
+        if (multipleRecyclerAdapter.getData().size() < pageSize || current >= totla) {
+            multipleRecyclerAdapter.loadMoreEnd(true);
+        } else {
+            //请求服务器获取其他页的内容
+            RestClient.builder().url(url + inde)
+                    .loader(RECYCLERVIEW.getContext())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            multipleRecyclerAdapter.addData(CONVERER.setJsonData(response).convert());
+                            //累加数量
+                            BEAN.setCurrentCount(multipleRecyclerAdapter.getData().size());
+                            multipleRecyclerAdapter.loadMoreComplete();//加载结束
+                            BEAN.addIndex();
+                        }
+                    }).build().get();
+        }
     }
 }
