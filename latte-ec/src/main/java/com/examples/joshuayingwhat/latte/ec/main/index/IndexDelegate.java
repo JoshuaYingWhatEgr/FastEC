@@ -2,6 +2,7 @@ package com.examples.joshuayingwhat.latte.ec.main.index;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -15,11 +16,15 @@ import com.examples.joshuayingwhat.latte.delegates.bottom.BottomItemDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
 import com.examples.joshuayingwhat.latte.ec.main.EcBottomDelegate;
+import com.examples.joshuayingwhat.latte.utils.callback.CallBackManager;
+import com.examples.joshuayingwhat.latte.utils.callback.CallBackType;
+import com.examples.joshuayingwhat.latte.utils.callback.IGlobalCallBack;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.joshuayingwhat.latte_ui.ui.recycler.BaseDecoration;
 import com.joshuayingwhat.latte_ui.ui.refresh.RefreshHandler;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 这里是主页界面
@@ -87,5 +92,18 @@ public class IndexDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler = RefreshHandler.creator(mRefreshLayout, mRecycler, new IndexDataConvert());
+        CallBackManager.getInstance().addCallBack(CallBackType.ON_SCAN, new IGlobalCallBack<String>() {
+
+            @Override
+            public void executeCallBack(@Nullable String args) {
+                Toast.makeText(getContext(), "扫描结果:" + args, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    //二维码扫描
+    @OnClick({R2.id.icon_index_scan})
+    void onClickScanQrCode() {
+        startScanWithCheck(this.getParentDelegate());
     }
 }

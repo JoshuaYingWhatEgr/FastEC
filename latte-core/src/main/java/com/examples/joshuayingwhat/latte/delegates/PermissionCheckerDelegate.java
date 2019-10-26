@@ -6,16 +6,17 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import com.examples.joshuayingwhat.latte.app.Latte;
 import com.examples.joshuayingwhat.latte.camera.CamearImageBean;
 import com.examples.joshuayingwhat.latte.camera.LatteCamer;
 import com.examples.joshuayingwhat.latte.camera.RequestCode;
+import com.examples.joshuayingwhat.latte.ui.scanner.ScannerDelegate;
 import com.examples.joshuayingwhat.latte.utils.callback.CallBackManager;
 import com.examples.joshuayingwhat.latte.utils.callback.CallBackType;
 import com.examples.joshuayingwhat.latte.utils.callback.IGlobalCallBack;
@@ -49,6 +50,16 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
      */
     public void startCameraWithCheck() {
         PermissionCheckerDelegatePermissionsDispatcher.startCamearWithPermissionCheck(this);
+    }
+
+    public void startScanWithCheck(BaseDelegate delegate) {
+        PermissionCheckerDelegatePermissionsDispatcher.startScanWithPermissionCheck(this, delegate);
+    }
+
+    //扫描二维码
+    @NeedsPermission(Manifest.permission.CAMERA)
+    public void startScan(BaseDelegate delegate) {
+        delegate.getSupportDelegate().startForResult(new ScannerDelegate(), RequestCode.SCAN);
     }
 
     @SuppressLint("NeedOnRequestPermissionsResult")
@@ -121,10 +132,21 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
                     }
                     break;
                 case RequestCode.CROP_ERROR:
-                    Toast.makeText(getContext(),"剪裁出错",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "剪裁出错", Toast.LENGTH_SHORT).show();
                     break;
                 default:
                     break;
+            }
+        }
+    }
+
+    @Override
+    public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
+        super.onFragmentResult(requestCode, resultCode, data);
+        if (requestCode == RequestCode.SCAN) {
+            if (data != null) {
+                final String qrCode = data.getString("SCAN_RESULT");
+
             }
         }
     }

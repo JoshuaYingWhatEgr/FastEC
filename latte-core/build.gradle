@@ -104,4 +104,6 @@ dependencies {
     implementation 'com.github.yalantis:ucrop:2.2.1-native'
     //工具类
     implementation 'com.blankj:utilcodex:1.25.9'
+    //二维码
+    compile 'me.dm7.barcodescanner:zbar:1.9.8'
 }
