@@ -24,6 +24,9 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
         super(fm);
         //一条tabs信息
         final JSONArray tabs = data.getJSONArray("tabs");
+        if (tabs == null) {
+            return;
+        }
         final int size = tabs.size();
         for (int i = 0; i < size; i++) {
             final JSONObject eachTab = tabs.getJSONObject(i);

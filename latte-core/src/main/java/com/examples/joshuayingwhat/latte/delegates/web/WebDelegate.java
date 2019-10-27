@@ -5,9 +5,8 @@ import android.webkit.WebView;
 
 import androidx.annotation.Nullable;
 
-import com.examples.joshuayingwhat.latte.app.ConfigKeys;
-import com.examples.joshuayingwhat.latte.app.Configurator;
-import com.examples.joshuayingwhat.latte.app.Latte;
+import com.examples.joshuayingwhat.latte.global.ConfigKeys;
+import com.examples.joshuayingwhat.latte.global.Latte;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.delegates.web.route.RouteKeys;
 

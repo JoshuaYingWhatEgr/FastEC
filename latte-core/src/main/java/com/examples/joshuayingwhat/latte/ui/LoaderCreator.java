@@ -1,6 +1,7 @@
 package com.examples.joshuayingwhat.latte.ui;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.wang.avi.AVLoadingIndicatorView;
 import com.wang.avi.Indicator;
@@ -12,7 +13,7 @@ import java.util.WeakHashMap;
  *
  * @author joshuayingwhat
  */
-public final class LoaderCreator {
+final class LoaderCreator {
 
     private static final WeakHashMap<String, Indicator> LOADING_MAP = new WeakHashMap<>();
 
@@ -39,6 +40,7 @@ public final class LoaderCreator {
             drawableClassName.append(defaultPackageName).append(".indicators").append(".");
         }
         drawableClassName.append(name);
+        Log.d("Tag", drawableClassName.toString());
         try {
             final Class<?> drawableClass = Class.forName(drawableClassName.toString());
             return (Indicator) drawableClass.newInstance();

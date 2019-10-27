@@ -56,6 +56,7 @@ public class IndexDelegate extends BottomItemDelegate implements View.OnFocusCha
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
         mRefreshLayout.setProgressViewOffset(true, 120, 300);
+//        mRefreshLayout.setOnRefreshListener(this);
     }
 
     //初始化recyclerview的布局
@@ -81,7 +82,7 @@ public class IndexDelegate extends BottomItemDelegate implements View.OnFocusCha
         super.onLazyInitView(savedInstanceState);
         initRefteshLayout();
         initRecyclerView();
-//        mRefreshHandler.firstPage("index.php");
+        mRefreshHandler.firstPage("index.php");
     }
 
     @Override

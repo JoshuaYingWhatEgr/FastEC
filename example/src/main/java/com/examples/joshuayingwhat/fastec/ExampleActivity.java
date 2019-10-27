@@ -7,7 +7,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.examples.joshuayingwhat.latte.activities.ProxyActivity;
-import com.examples.joshuayingwhat.latte.app.Latte;
+import com.examples.joshuayingwhat.latte.global.Latte;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.ec.launcher.LauncherDelegate;
 import com.examples.joshuayingwhat.latte.ec.main.EcBottomDelegate;

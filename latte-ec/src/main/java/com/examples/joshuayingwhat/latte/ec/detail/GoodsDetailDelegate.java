@@ -131,6 +131,10 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
                     @Override
                     public void onSuccess(String response) {
                         LatteLoader.stopLoading();
+                        if (response.isEmpty() || response.length() <= 0) {
+                            getSupportDelegate().pop();
+                            return;
+                        }
                         final JSONObject data =
                                 JSON.parseObject(response).getJSONObject("data");
                         initBanner(data);
@@ -238,5 +242,10 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
 //                        }
                     }
                 });
+    }
+
+    @OnClick({R2.id.icon_goods_back})
+    void onClickGoodsDetailBack() {
+        getSupportDelegate().pop();
     }
 }

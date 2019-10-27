@@ -16,7 +16,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.TextView;
 
 
-import com.examples.joshuayingwhat.latte.app.Latte;
+import com.examples.joshuayingwhat.latte.global.Latte;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

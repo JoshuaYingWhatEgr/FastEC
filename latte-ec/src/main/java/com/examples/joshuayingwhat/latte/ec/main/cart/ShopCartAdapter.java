@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.examples.joshuayingwhat.latte.app.Latte;
+import com.examples.joshuayingwhat.latte.global.Latte;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.net.rx.RxRestClient;
 import com.examples.joshuayingwhat.latte.ui.LatteLoader;

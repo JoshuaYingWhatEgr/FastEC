@@ -2,8 +2,8 @@ package com.examples.joshuayingwhat.latte.wechat;
 
 import android.app.Activity;
 
-import com.examples.joshuayingwhat.latte.app.ConfigKeys;
-import com.examples.joshuayingwhat.latte.app.Latte;
+import com.examples.joshuayingwhat.latte.global.ConfigKeys;
+import com.examples.joshuayingwhat.latte.global.Latte;
 import com.examples.joshuayingwhat.latte.wechat.callback.IWeChatSignInCallBack;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;

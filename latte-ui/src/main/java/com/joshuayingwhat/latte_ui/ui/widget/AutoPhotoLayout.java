@@ -50,7 +50,6 @@ public class AutoPhotoLayout extends LinearLayoutCompat {
 
     private int mImageMargin = 0;
 
-    private LatteDelegate delegate = null;
 
     private List<View> mLineViews = null;
 
@@ -65,7 +64,7 @@ public class AutoPhotoLayout extends LinearLayoutCompat {
     //防止布局多次的测量
     private boolean mIsOnceInitOnMeasure = false;
     private boolean mHasInitOnLayout = false;
-    private LatteDelegate DELEGATE;
+    private LatteDelegate delegate = null;
 
     public AutoPhotoLayout(Context context) {
         this(context, null);
@@ -95,7 +94,7 @@ public class AutoPhotoLayout extends LinearLayoutCompat {
     }
 
     public void setDelegate(LatteDelegate delegate) {
-        DELEGATE = delegate;
+        this.delegate = delegate;
     }
 
     private void initIcon() {

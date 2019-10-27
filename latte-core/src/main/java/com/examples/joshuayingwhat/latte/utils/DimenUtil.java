@@ -3,7 +3,7 @@ package com.examples.joshuayingwhat.latte.utils;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
-import com.examples.joshuayingwhat.latte.app.Latte;
+import com.examples.joshuayingwhat.latte.global.Latte;
 
 /**
  * @author joshuayingwhat

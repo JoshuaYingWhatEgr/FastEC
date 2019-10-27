@@ -2,7 +2,7 @@ package com.examples.joshuayingwhat.latte.ec.sign;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.examples.joshuayingwhat.latte.app.AccountManager;
+import com.examples.joshuayingwhat.latte.global.AccountManager;
 import com.examples.joshuayingwhat.latte.ec.database.DataBaseManager;
 import com.examples.joshuayingwhat.latte.ec.database.UserProfile;
 

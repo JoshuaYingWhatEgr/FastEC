@@ -1,4 +1,4 @@
-package com.examples.joshuayingwhat.latte.app;
+package com.examples.joshuayingwhat.latte.global;
 
 import android.app.Activity;
 
@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.WeakHashMap;
 
 import okhttp3.Interceptor;
-import okhttp3.internal.Util;
 
 /**
  * 配置文件的存储和获取

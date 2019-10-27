@@ -5,10 +5,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSON;
@@ -75,26 +78,24 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         //请求购物车数据
-//        RestClient.builder().url("shop_cart.php")
-//                .loader(getContext())
-//                .success(new ISuccess() {
-//                    @Override
-//                    public void onSuccess(String response) {
-//                        final ArrayList<MultipleItemEntity> data =
-//                                new ShopCartDataConvert().setJsonData(response).convert();
-//                        final LinearLayoutManager manager = new LinearLayoutManager(getContext());
-//                        mRecyclerView.setLayoutManager(manager);
-//                        mAdapter = new ShopCartAdapter(data);
-//                        mRecyclerView.setAdapter(mAdapter);
-//                        mTotalPrice = mAdapter.getmTotalPrice();
-//                        mTvTotalPrice.setText(String.valueOf(mTotalPrice));
-//                    }
-//                })
-//                .build().get();
-//
-//        mAdapter.setmCartItemListener(this);
-
-        checkItemCount();
+        RestClient.builder().url("shop_cart.php")
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        final ArrayList<MultipleItemEntity> data =
+                                new ShopCartDataConvert().setJsonData(response).convert();
+                        final LinearLayoutManager manager = new LinearLayoutManager(getContext());
+                        mRecyclerView.setLayoutManager(manager);
+                        mAdapter = new ShopCartAdapter(data);
+                        mRecyclerView.setAdapter(mAdapter);
+                        mTotalPrice = mAdapter.getmTotalPrice();
+                        mTvTotalPrice.setText(String.valueOf(mTotalPrice));
+                        mAdapter.setmCartItemListener(ShopCartDelegate.this);
+                        checkItemCount();
+                    }
+                })
+                .build().get();
     }
 
     @SuppressLint("ResourceType")
@@ -106,7 +107,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
             mIconSelectAll.setTag(1);
             mAdapter.setIsSelectedAll(true);
         } else {
-            mIconSelectAll.setTextColor(ContextCompat.getColor(getContext(), Color.GRAY));
+            mIconSelectAll.setTextColor(ContextCompat.getColor(getContext(), R.color.gray));
             mIconSelectAll.setTag(0);
             mAdapter.setIsSelectedAll(false);
         }
@@ -160,21 +161,21 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
      * 检查购物车是否有数据
      */
     private void checkItemCount() {
-//        final int count = mAdapter.getItemCount();
-//        if (count == 0) {
-//            final View stubView = mStubNoItem.inflate();
-//            final AppCompatTextView tvToBuy = stubView.findViewById(R.id.tv_stub_to_buy);
-//            tvToBuy.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Toast.makeText(getContext(), "您该购物了", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//
-//            mRecyclerView.setVisibility(View.GONE);
-//        } else {
-//            mRecyclerView.setVisibility(View.VISIBLE);
-//        }
+        final int count = mAdapter.getItemCount();
+        if (count == 0) {
+            final View stubView = mStubNoItem.inflate();
+            final AppCompatTextView tvToBuy = stubView.findViewById(R.id.tv_stub_to_buy);
+            tvToBuy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "您该购物了", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            mRecyclerView.setVisibility(View.GONE);
+        } else {
+            mRecyclerView.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
@@ -196,7 +197,8 @@ public class ShopCartDelegate extends BottomItemDelegate implements ICartItemLis
      */
     @OnClick(R2.id.tv_shop_cart_pay)
     void onClickPay(View view) {
-        createOrder();
+//        createOrder();
+        Toast.makeText(getContext(),"结算需要先请求自己的服务器发送订单连接",Toast.LENGTH_SHORT).show();
     }
 
     /**

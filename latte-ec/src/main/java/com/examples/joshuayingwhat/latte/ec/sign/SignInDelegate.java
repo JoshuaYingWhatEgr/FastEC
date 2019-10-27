@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.examples.joshuayingwhat.latte.app.Latte;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.ec.R2;
@@ -19,8 +18,6 @@ import com.examples.joshuayingwhat.latte.wechat.LatteWeChat;
 import com.examples.joshuayingwhat.latte.wechat.callback.IWeChatSignInCallBack;
 import com.google.android.material.textfield.TextInputEditText;
 import com.joanzapata.iconify.widget.IconTextView;
-
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;

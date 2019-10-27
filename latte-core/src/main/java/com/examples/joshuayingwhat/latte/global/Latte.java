@@ -1,11 +1,8 @@
-package com.examples.joshuayingwhat.latte.app;
+package com.examples.joshuayingwhat.latte.global;
 
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.WeakHashMap;
-
-import okhttp3.Interceptor;
 
 /**
  * @author joshuayingwhat

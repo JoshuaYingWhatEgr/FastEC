@@ -46,14 +46,6 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
         return new RefreshHandler(swipeRefreshLayout, new PagingBean(), recyclerView, converer);
     }
 
-    private void refresh() {
-        //要开始加载了
-        REFRESH_LAYOUT.setRefreshing(true);
-
-        //进行一些网络请求操作
-        firstPage("index.php");
-    }
-
     public void firstPage(String url) {
         BEAN.setDelayed(1000);
         RestClient.builder().url(url)
@@ -87,7 +79,11 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
 
     @Override
     public void onRefresh() {
+        //要开始加载了
+        REFRESH_LAYOUT.setRefreshing(true);
 
+        //进行一些网络请求操作
+        firstPage("index.php");
     }
 
     @Override

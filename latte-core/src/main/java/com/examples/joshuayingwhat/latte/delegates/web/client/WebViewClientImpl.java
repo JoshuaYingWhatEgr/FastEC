@@ -5,8 +5,8 @@ import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.examples.joshuayingwhat.latte.app.ConfigKeys;
-import com.examples.joshuayingwhat.latte.app.Latte;
+import com.examples.joshuayingwhat.latte.global.ConfigKeys;
+import com.examples.joshuayingwhat.latte.global.Latte;
 import com.examples.joshuayingwhat.latte.delegates.IPageLoadListener;
 import com.examples.joshuayingwhat.latte.delegates.web.WebDelegate;
 import com.examples.joshuayingwhat.latte.delegates.web.route.Router;

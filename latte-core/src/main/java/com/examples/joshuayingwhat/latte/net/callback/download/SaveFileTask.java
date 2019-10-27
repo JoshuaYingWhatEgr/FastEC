@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 
-import com.examples.joshuayingwhat.latte.app.Latte;
+import com.examples.joshuayingwhat.latte.global.Latte;
 import com.examples.joshuayingwhat.latte.net.callback.IRequest;
 import com.examples.joshuayingwhat.latte.net.callback.ISuccess;
 import com.examples.joshuayingwhat.latte.utils.file.FileUtil;

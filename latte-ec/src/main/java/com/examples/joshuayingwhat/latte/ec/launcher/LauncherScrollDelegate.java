@@ -8,8 +8,8 @@ import androidx.annotation.Nullable;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
-import com.examples.joshuayingwhat.latte.app.AccountManager;
-import com.examples.joshuayingwhat.latte.app.IUserCheck;
+import com.examples.joshuayingwhat.latte.global.AccountManager;
+import com.examples.joshuayingwhat.latte.global.IUserCheck;
 import com.examples.joshuayingwhat.latte.delegates.LatteDelegate;
 import com.examples.joshuayingwhat.latte.ec.R;
 import com.examples.joshuayingwhat.latte.utils.storage.LattePreference;

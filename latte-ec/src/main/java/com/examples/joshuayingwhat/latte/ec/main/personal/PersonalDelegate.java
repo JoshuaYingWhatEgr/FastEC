@@ -106,6 +106,7 @@ public class PersonalDelegate extends BottomItemDelegate {
 
     @OnClick({R2.id.tv_all_order})
     void allListClick() {
+        args.putString(ORDER_TYPE, "all");
         startOrderListByType();
     }
 

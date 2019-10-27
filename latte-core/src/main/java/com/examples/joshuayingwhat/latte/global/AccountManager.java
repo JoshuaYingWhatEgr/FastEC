@@ -1,4 +1,4 @@
-package com.examples.joshuayingwhat.latte.app;
+package com.examples.joshuayingwhat.latte.global;
 
 import com.examples.joshuayingwhat.latte.utils.storage.LattePreference;
 

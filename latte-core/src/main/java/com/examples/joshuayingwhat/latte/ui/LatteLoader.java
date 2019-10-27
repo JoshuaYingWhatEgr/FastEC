@@ -7,6 +7,7 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatDialog;
 
+import com.examples.joshuayingwhat.latte.R;
 import com.examples.joshuayingwhat.latte.utils.DimenUtil;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -26,15 +27,15 @@ public class LatteLoader {
      */
     private static ArrayList<AppCompatDialog> LOADERS = new ArrayList<>();
 
-    private static String DEFALUT_LOADER = LoaderStyle.BallClipRotateMultipleIndicator.name();
+    private static String DEFALUT_LOADER = LoaderStyle.BallClipRotatePulseIndicator.name();
 
     public static void showLoading(Context context, Enum<LoaderStyle> type) {
         showLoading(context, type.name());
     }
 
-    public static void showLoading(Context context, String type) {
+    private static void showLoading(Context context, String type) {
 
-        final AppCompatDialog dialog = new AppCompatDialog(context);
+        final AppCompatDialog dialog = new AppCompatDialog(context, R.style.dialog);
 
         final AVLoadingIndicatorView avLoadingIndicatorView = LoaderCreator.createorLoading(type, context);
 
@@ -49,8 +50,8 @@ public class LatteLoader {
         if (dialogWindow != null) {
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
             lp.width = deviceWidth / LOADER_SIZE_SCALE;
-            lp.height = deviceHeight / LOADER_SIZE_SCALE;
-            lp.height = lp.height + deviceHeight / LOADER_OFFSET_SCALE;
+            lp.height = deviceHeight / LOADER_OFFSET_SCALE;
+            lp.height = lp.height + deviceHeight / LOADER_SIZE_SCALE;
             lp.gravity = Gravity.CENTER;
         }
         LOADERS.add(dialog);

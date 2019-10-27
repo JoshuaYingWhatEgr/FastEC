@@ -2,7 +2,7 @@ package com.examples.joshuayingwhat.fastec;
 
 import android.app.Application;
 
-import com.examples.joshuayingwhat.latte.app.Latte;
+import com.examples.joshuayingwhat.latte.global.Latte;
 import com.examples.joshuayingwhat.latte.ec.database.DataBaseManager;
 import com.examples.joshuayingwhat.latte.ec.icon.FontEcModule;
 import com.examples.joshuayingwhat.latte.net.interceptors.DebugInterceptors;
@@ -27,8 +27,8 @@ public class ExampleApp extends Application {
                 .withWebEvent("test", new TestEvent())
                 .withInterceptor(AddHttpLogInterceptor.getInstance().setLevel(okhttp3.logging.HttpLoggingInterceptor.Level.BODY))
 //                .withInterceptor(new AddCookieInterceptor())
-                .withWebHost("http://www.baidu.com/")
-                .withInterceptor(new DebugInterceptors("index", R.raw.test)).configure();
+                .withWebHost("http://www.baidu.com/").configure();
+//                .withInterceptor(new DebugInterceptors("index", R.raw.test)).configure();
         initStetho();
         /**
          * 初始化数据库

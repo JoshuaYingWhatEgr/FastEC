@@ -20,6 +20,20 @@
             android:textSize="20sp"
             tools:ignore="HardcodedText"/>
     </androidx.appcompat.widget.Toolbar>
+    <com.joshuayingwhat.latte_ui.ui.widget.MarqueeTextView
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:textColor="@android:color/holo_red_dark"
+        android:text="欢迎雷哥,热烈欢迎。。。。欢迎雷哥,热烈欢迎。。。。欢迎雷哥,热烈欢迎。。。。欢迎雷哥,热烈欢迎。。。。"
+        />
+
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

@@ -6,11 +6,13 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 
 import com.examples.joshuayingwhat.latte.camera.CamearImageBean;
@@ -40,7 +42,9 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
     /**
      * 仅仅只是为了生成代码所有
      */
-    @NeedsPermission(Manifest.permission.CAMERA)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE})
     void startCamear() {
         LatteCamer.start(this);
     }

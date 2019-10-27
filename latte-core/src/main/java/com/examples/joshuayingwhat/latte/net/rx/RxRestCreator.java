@@ -1,7 +1,7 @@
 package com.examples.joshuayingwhat.latte.net.rx;
 
-import com.examples.joshuayingwhat.latte.app.ConfigKeys;
-import com.examples.joshuayingwhat.latte.app.Latte;
+import com.examples.joshuayingwhat.latte.global.ConfigKeys;
+import com.examples.joshuayingwhat.latte.global.Latte;
 
 import java.util.ArrayList;
 import java.util.WeakHashMap;

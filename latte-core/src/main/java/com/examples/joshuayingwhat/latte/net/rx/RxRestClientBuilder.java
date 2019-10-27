@@ -61,7 +61,7 @@ public class RxRestClientBuilder {
 
     public final RxRestClientBuilder loader(Context context) {
         this.mContext = context;
-        this.mLoaderStyle = LoaderStyle.BallClipRotatePulseIndicator;
+        this.mLoaderStyle = LoaderStyle.BallClipRotateMultipleIndicator;
         return this;
     }
 
